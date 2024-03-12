@@ -1,4 +1,4 @@
-# ![[React Front End Pets Lab] - Create](./assets/tktk-hero.png)
+# ![React Front End Pets Lab - Create](./assets/exercise-create.png)
 
 ## Create
 

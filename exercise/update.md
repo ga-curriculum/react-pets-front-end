@@ -1,4 +1,4 @@
-# ![[React Front End Pets Lab] - Update](./assets/tktk-hero.png)
+# ![React Front End Pets Lab - Update](./assets/exercise-update.png)
 
 In this section we want to complete the following tasks:
 

@@ -1,10 +1,10 @@
-# ![[React Front End Pets Lab] - Intro](./assets/tktk-hero.png)
+# ![React Front End Pets Lab - Intro](./assets/exercise-intro.png)
 
 ## Introduction
 
-In this lab, you will build a Single Page Application (SPA) using React. Along with React you will use `fetch` to consume from a RESTful API that you built. You will be able to Create, Read, Update, and Delete (CRUD) pets from the API and conditionally render the UI based on the state of the application.
+In this lab, you will build a Single Page Application (SPA) using React. Along with React, you will use `fetch` to consume from a RESTful API that you built. You will be able to Create, Read, Update, and Delete (CRUD) pets from the API and conditionally render the UI based on the state of the application.
 
-## Minumun Requirements
+## Minumun requirements
 
 - [ ] Read all Pets
   - [ ] Display all Pets in the UI

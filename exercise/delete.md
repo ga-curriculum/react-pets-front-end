@@ -1,4 +1,4 @@
-# ![[React Front End Pets Lab] - Delete](./assets/tktk-hero.png)
+# ![React Front End Pets Lab - Delete](./assets/exercise-delete.png)
 
 In this section we want to complete the following tasks:
 

@@ -1,4 +1,4 @@
-# ![[React Front End Pets Lab]](./assets/tktk-hero.png)
+# ![React Front End Pets Lab](./assets/hero.png)
 
 ## About
 

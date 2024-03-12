@@ -1,4 +1,4 @@
-# ![[React Front End Pets Lab] - Read](./assets/tktk-hero.png)
+# ![React Front End Pets Lab - Read](./assets/exercise-read.png)
 
 ## Read
 

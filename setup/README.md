@@ -1,4 +1,4 @@
-# ![[tktk Module Name] - Setup](./assets/hero.png)
+# ![React Front End Pets Lab - Setup](./assets/hero.png)
 
 ## Setup
 
