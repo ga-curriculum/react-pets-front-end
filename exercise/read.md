@@ -2,7 +2,7 @@
 
 ## Read
 
-In this lab we wan to complete both the index and show read actions. This means we want to:
+In this lab we want to complete both the index and show read actions. This means we want to:
 
 - [ ] Read all Pets
   - [ ] Display all Pets in the UI
