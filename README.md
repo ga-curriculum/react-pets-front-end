@@ -24,7 +24,7 @@ Estimated time to complete core lab exercise: **tktk min**
 
 ## Solution code
 
-🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-front-end-pets-solution)
+🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-front-end-lab-pets-solution)
 
 ## Internal resources
 
