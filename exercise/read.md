@@ -198,20 +198,6 @@ const App = () => {
 }
 ```
 
-At this point, it's good practice to `console.log` the data to ensure that everything is working as expected: 
-
-```js
-    const fetchPets = async () => {
-      const data = await petService.index()
-      setPetList(data.pets)
-      // log the data
-      console.log(data.pets)
-    }
-    fetchPets()
-```
-
-If you're not seeing the pets array, check that your server is running, and that your database is populated with at least one pet! 
-
 ### Displaying the Data
 
 Next, let's set up our UI to display the pets in our state.
@@ -267,25 +253,64 @@ Refresh the browser and check to see that the pets data is being displayed corre
 
 Finally, let's handle the case where there are no pets to display. 
 
-This should be handled as a ternary checking to see if the length of the pets array is greater than 0. If so we display the list of pets, if not we display a message that there are no pets to display.
+This can be handled with a ternary operator, checking to see if the pets array has a length of 0. If so, we display a message that there are no pets to display, and if not we instead display the list of pets:
+
+```jsx
+// src/components/petList.jsx
+
+  return (
+    <div>
+      <h1>Pet List</h1>
+      {!props.petList.length 
+          ? <h2>No Pets Yet!</h2> 
+          : <ul>{pets}</ul>
+      }
+    </div>
+  );
+```
+
+### Using the PetList component
+
+Let's add the finishing touches to this step by importing the `PetList` component into `App.jsx`, and rendering it.
+
+Import the `PetList` component into `App.jsx`.
+
+```jsx
+import PetList from './components/PetList'
+```
+
+Inside of the return statement of `App.jsx` render the `PetList` component. Make sure to pass the `petList` state variable as a prop to the `PetList` component.
+
+```jsx
+// src/App.jsx
+import { useState, useEffect } from 'react'
+import * as petService from './services/petService'
+
+import PetList from './components/PetList'
+
+const App = () => {
+  const [petList, setPetList] = useState([])
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      const data = await petService.index()
+      setPetList(data.pets)
+    }
+    fetchPets()
+  }, [])
+
+  return (
+    <PetList petList={petList} />
+  )
+}
+
+export default App
+```
+
+Test it out in the browser and make sure you are seeing the list of pets. If not, check that your server is running, and that your database is populated with at least one pet! 
 
 
-
-
-
-
-
-
-Let's add the finishing touches here and import the `PetList` component into `App.jsx` and render it.
-
-- Import the `PetList` component into `App.jsx`.
-- Inside of the return statement of `App.jsx` render the `PetList` component. 
-  - Make sure to pass the pets state variable as a prop to the `PetList` component.
-  - If you used the `props` object to map over the pets in the `PetList` component, make sure you name the prop you are passing to the `PetList` component the same as the prop you are using in the `PetList` component.
-
-Test it out in the browser and make sure you are seeing the list of pets.
-
-### Step 2: Read a single Pet
+## Step 2: Read a single Pet
 
 For this next section we are going to show a single pet in the UI. We want to be able to click on a pet and see the details of that pet.
 
