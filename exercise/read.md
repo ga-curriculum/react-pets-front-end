@@ -2,17 +2,26 @@
 
 ## Read
 
-In this lab we want to complete both the index and show read actions. This means we want to:
+In this section of the lab, we want to complete both the index and show read actions. For practice, let's take the minimum requirements we laid out in the intro: 
 
-- [ ] Read all Pets
-  - [ ] Display all Pets in the UI
-- [ ] Read a single Pet
-  - [ ] Add a button or wrap Pet in an `a` element to view the details of a single Pet
-  - [ ] Conditionally render the details of a single Pet
+#### Read all Pets
+  - Display all Pets in the UI
 
-### Step 1: Read all Pets
+#### Read a single Pet
+  - Add a button to view the details of a single Pet
+  - Conditionally render the details of a single Pet
+
+and translate them into User Stories: 
+
+- As a user, I want to be able to view all of the Pets.
+
+- As a user, I want to be able to click a button to view the details of a single Pet.
+
+## Step 1: Read all Pets
 
 Let's read all the pets. We want a list of pets to be displayed in the UI.
+
+First, let's 
 
 - Create a new function inside of `petService.js` called `getAllPets`. This function should:
   - Use `fetch` to make a `GET` request to the base URL.
@@ -20,7 +29,7 @@ Let's read all the pets. We want a list of pets to be displayed in the UI.
   - Use `.json()` method to parse the response. Ex: `res.json()`.
   - Return the parsed response.
   - Make sure to export this function.
-- Inside of `App.jsx` create a new state vaiable to hold the pets and one to hold any error messages. This should be an array and a string respectively.
+- Inside of `App.jsx` create a new state variable to hold the pets and one to hold any error messages. This should be an array and a string respectively.
 - Still inside of `App.jsx` create a `useEffect` hook to call the `getAllPets` function and set the state variable to the response.
   - Make sure to import the `getAllPets` function from `petService.js`.
   - Make sure to add an empty dependency array to the `useEffect` hook.

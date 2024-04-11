@@ -71,4 +71,4 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/pets`
 VITE_BACK_END_SERVER_URL='http://localhost:3000'
 ```
 
-We are going to keep any components we create inside the `components` directory. This will help us keep our project organized and easy to navigate. We are also going to create a file called `petService.js` that will hold the base URL for our API. This will help us keep our code DRY and easy to maintain.
+We are going to keep any components we create inside the `components` directory. This will help us keep our project organized and easy to navigate.`petService.js` will hold the base URL for our API, which will help us keep our code DRY and easy to maintain.
