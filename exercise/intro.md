@@ -26,6 +26,12 @@ In this lab, you'll be building a Single Page Application (SPA) using React. You
 #### Delete a Pet
   - Add a button to delete a Pet
   - Remove the Pet from the UI
+
+## Component Hierarchy
+
+This lab does not feature any routing, meaning that the user will not be navigating between pages in this build. When working with React, however, this doesn't mean that you are limited to the use of a single component - far from it! Your single 'page' will be made up of multiple components, so it's still a good idea to map out the component hierarchy and get an overview of the app layout before you start coding:
+
+[tktk Hunter amazing graphic here]
   
 
 ## Items of Note
