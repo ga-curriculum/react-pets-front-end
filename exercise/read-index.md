@@ -1,25 +1,16 @@
-# ![React Front End Pets Lab - Read](./assets/exercise-read.png)
+# ![React Front End Pets Lab - Read - Index](./assets/exercise-read.png)
 
-## Read
+## Read - Index
 
-In this section of the lab, we want to complete both the index and show read actions. For practice, let's take the minimum requirements we laid out in the intro: 
+In this section of the lab, we want to complete the index read actions. For practice, let's take the minimum requirement we laid out in the intro: 
 
 #### Read all Pets
   - Display all Pets in the UI
 
-#### Read a single Pet
-  - Add a button to view the details of a single Pet
-  - Conditionally render the details of a single Pet
-
-and translate them into User Stories: 
+And translate it into a User Story: 
 
 - As a user, I want to be able to view all of the Pets.
 
-- As a user, I want to be able to click a button to view the details of a single Pet. 
-
-## Step 1: Read all Pets
-
-For this first step, want a list of pets to be displayed in the UI. 
 
 ❗ If you deleted all of the pets in the database at the end of the Express REST API lesson, open up Postman and add a few new pets so that you'll have data for this section of the lab. ❗
 
@@ -32,7 +23,7 @@ Inside of `petService.js`, create a new async function called `index`:
 ```js
 // src/services/petService.js
 
-async function index() {
+const index = async () => {
 
 }
 ```
@@ -44,7 +35,7 @@ Next, let's go ahead and code the fetch call. Remember that in the setup we crea
 ```js
 // src/services/petService.js
 
-async function index() {
+const index = async () => {
   const res = await fetch(BASE_URL)
 }
 ```
@@ -56,7 +47,7 @@ In order to get this Response object to resolve to a useable JavaScript object, 
 ```js
 // src/services/petService.js
 
-async function index() {
+const index = async () => {
   const res = await fetch(BASE_URL)
   return res.json()
 }
@@ -67,7 +58,7 @@ Our final step is to handle potential errors - let's wrap our fetch call in a `t
 ```js
 // src/services/petService.js
 
-async function index() {
+const index = async () => {
   try {
     const res = await fetch(BASE_URL)
     return res.json()
@@ -90,7 +81,7 @@ Make sure to export this function! At this stage, your `petService.js` file shou
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/pets`
 
-async function index() {
+const index = async () => {
   try {
     const res = await fetch(BASE_URL)
     return res.json()
@@ -310,29 +301,4 @@ export default App
 Test it out in the browser and make sure you are seeing the list of pets. If not, check that your server is running, and that your database is populated with at least one pet! 
 
 
-## Step 2: Read a single Pet
 
-For this next section we are going to show a single pet in the UI. We want to be able to click on a pet and see the details of that pet.
-
-- Inside of `PetList.jsx` where you `.map()` over the pets, wrap each `li` element in an `a` tag.
-  - Move the `key` element to the `a` element.
-  - Add an `onClick` event to the `a` element. Add an inline function that logs the clicked pet to the console.
-- Inside of `App.jsx` create a new function to handle the click event we set up in the `PetList` component.
-  - Create a new state variable to hold the single pet. This should be an object that represents the pet or `null` if no pet is selected.
-  - This function should accept the pet as an argument.
-  - This function should set the selected pet to the state variable.
-  - Pass this function as a prop to the `PetList` component and call it when a pet is clicked. This should replace the log statement we added in the `PetList` component.
-
-Before moving on test that you can click on a pet and have the state variable update with the selected pet. You can do this the Chrome React Dev Tools or log statements.
-
-Now that we have the selected pet in the state variable we can conditionally render the details of the pet in the UI.
-
-- Inside of `components` create a new file called `PetDetails.jsx`.
-  - In this file create a function component called `PetDetails`.
-  - This component should accept `props` as an argument.
-  - From the `PetDetails` component we should render the details of the pet.
-  - Make sure to export the `PetDetails` component at the end of the file.
-- Back in `App.jsx` import the `PetDetails` component.
-  - Conditionally render the `PetDetails` component based on the state of the selected pet.
-
-Test it out in the browser and make sure you can click on a pet and see the details of that pet.

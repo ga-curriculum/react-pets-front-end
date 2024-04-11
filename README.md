@@ -17,7 +17,8 @@ Estimated time to complete core lab exercise: **tktk min**
 - [Setup](./setup/README.md)
 - Lab Exercises:
   - [Intro](./exercise/intro.md)
-  - [Read](./exercise/read.md)
+  - [Read - Index](./exercise/read-index.md)
+  - [Read - Show](./exercise/read-show.md)
   - [Create](./exercise/create.md)
   - [Update](./exercise/update.md)
   - [Delete](./exercise/delete.md)

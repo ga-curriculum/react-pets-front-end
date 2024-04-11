@@ -10,7 +10,7 @@ In this lab, you'll be building a Single Page Application (SPA) using React. You
   - Display all Pets in the UI
 
 #### Read a single Pet
-  - Add a button to view the details of a single Pet
+  - Add a link to view the details of a single Pet
   - Conditionally render the details of a single Pet
 
 #### Create a new Pet
