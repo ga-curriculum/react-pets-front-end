@@ -101,9 +101,9 @@ Next, pass this function as a prop to the `PetList` component and call it when a
 ```
 
 
-Before moving on, test that you can click on a pet and have the state variable update with the selected pet. You can do this with the Chrome React Dev Tools.
+Before moving on, test that you can click on a pet and have the `selected` state update to the selected pet. You can check this with the Chrome React Dev Tools.
 
-Now that we have the selected pet in the state variable we can conditionally render the details of the pet in the UI.
+Now that we have the selected pet in state, we can conditionally render the details of the pet in the UI.
 
 - Inside of `components` create a new file called `PetDetails.jsx`.
   - In this file create a function component called `PetDetails`.
@@ -113,4 +113,4 @@ Now that we have the selected pet in the state variable we can conditionally ren
 - Back in `App.jsx` import the `PetDetails` component.
   - Conditionally render the `PetDetails` component based on the state of the selected pet.
 
-Test it out in the browser and make sure you can click on a pet and see the details of that pet.
+Test it out in the browser and make sure you can click on a pet to see the details of the pet.
