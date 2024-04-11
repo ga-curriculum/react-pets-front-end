@@ -15,11 +15,13 @@ and translate them into User Stories:
 
 - As a user, I want to be able to view all of the Pets.
 
-- As a user, I want to be able to click a button to view the details of a single Pet.
+- As a user, I want to be able to click a button to view the details of a single Pet. 
 
 ## Step 1: Read all Pets
 
-Let's read all the pets. We want a list of pets to be displayed in the UI.
+For this first step, want a list of pets to be displayed in the UI. 
+
+❗ If you deleted all of the pets in the database at the end of the Express REST API lesson, open up Postman and add a few new pets so that you'll have data for this section of the lab. ❗
 
 ### Creating the Service
 
@@ -196,6 +198,20 @@ const App = () => {
 }
 ```
 
+At this point, it's good practice to `console.log` the data to ensure that everything is working as expected: 
+
+```js
+    const fetchPets = async () => {
+      const data = await petService.index()
+      setPetList(data.pets)
+      // log the data
+      console.log(data.pets)
+    }
+    fetchPets()
+```
+
+If you're not seeing the pets array, check that your server is running, and that your database is populated with at least one pet! 
+
 ### Displaying the Data
 
 Next, let's set up our UI to display the pets in our state.
@@ -249,9 +265,9 @@ Inside the return statement of `PetList.jsx`, create a `ul` element and render t
 
 Refresh the browser and check to see that the pets data is being displayed correctly before moving on to the next step. 
 
+Finally, let's handle the case where there are no pets to display. 
 
-
-Handle the case where there are no pets to display. This should be handled as a ternary checking to see if the length of the pets array is greater than 0. If so we display the list of pets, if not we display a message that there are no pets to display.
+This should be handled as a ternary checking to see if the length of the pets array is greater than 0. If so we display the list of pets, if not we display a message that there are no pets to display.
 
 
 
