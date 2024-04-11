@@ -171,6 +171,8 @@ useEffect(() => {
 With that in mind, we can build out our useEffect. Once we have the data back from our index function, we'll use it to set our `petList` state: 
 
 ```jsx
+// src/App.jsx
+
 const App = () => {
   const [petList, setPetList] = useState([])
 
@@ -200,22 +202,63 @@ Next, let's set up our UI to display the pets in our state.
 
 Inside of `src/components`, create a new file called `PetList.jsx`.
 
-In `PetList.jsx`, create a new functional component also called `PetList`. Make sure it accepts `props` as an argument: 
+In `PetList.jsx`, create a new functional component also called `PetList`. Make sure it accepts `props` as an argument. For now, it will simply return a header element: 
 
 ```jsx
+// src/components/PetList.jsx
+
 const PetList = (props) => {
-  return ();
+  return (
+    <h1>Pet List</h1>
+  );
 }
 
 export default PetList;
 ```
 
+Next, we'll use `.map()` to create a list of `<li>` elements. Each `<li>` element will display the `name` property of each pet in `petList`. React will also insist that each top-level element in a list must have a unique key - fortunately, MongoDB generates an id (as `._id`) for us when creating a resource, so we can use `pet._id` for the key: 
 
-- Using `.map()` and the `props` render a list of pets in the UI. This should be a list of `li` elements.
-  - You will need a `key` for each `li` element. This should be the `id` of the pet.
-- Inside the return statement of `PetList.jsx` create a `ul` element and render the list of pets inside of it.
-  - Handle the case where there are no pets to display. This should be handled as a ternary checking to see if the length of the pets array is greater than 0. If so we display the list of pets, if not we display a message that there are no pets to display.
-- Make sure to export the `PetList` component at the end of the file.
+```jsx
+// src/components/PetList.jsx
+
+const PetList = (props) => {
+  const pets = props.petList.map((pet) => (
+    <li key={pet._id}>{pet.name}</li>
+  ));
+
+  return (
+    <h1>Pet List</h1>
+  );
+}
+```
+
+Inside the return statement of `PetList.jsx`, create a `ul` element and render the list of pets inside of it:
+
+```jsx
+// src/components/petList.jsx
+
+  return (
+    <div>
+      <h1>Pet List</h1>
+      <ul>
+        {pets}
+      </ul>
+    </div>
+  );
+```
+
+Refresh the browser and check to see that the pets data is being displayed correctly before moving on to the next step. 
+
+
+
+Handle the case where there are no pets to display. This should be handled as a ternary checking to see if the length of the pets array is greater than 0. If so we display the list of pets, if not we display a message that there are no pets to display.
+
+
+
+
+
+
+
 
 Let's add the finishing touches here and import the `PetList` component into `App.jsx` and render it.
 

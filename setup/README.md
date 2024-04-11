@@ -72,3 +72,14 @@ VITE_BACK_END_SERVER_URL='http://localhost:3000'
 ```
 
 We are going to keep any components we create inside the `components` directory. This will help us keep our project organized and easy to navigate.`petService.js` will hold the base URL for our API, which will help us keep our code DRY and easy to maintain.
+
+### Run the back end server
+
+You will be using the back end server you created in the Express REST API lesson as the API for this lab. In a separate VScode window open the terminal, navigate to the correct directory, and run the server with `nodemon`:  
+
+```bash
+cd ~/code/ga/lectures/express-rest-api
+nodemon server.js
+```
+
+If you are not getting back the data you expect, or are experiencing strange bugs, always check to make sure your server is up and running! 
