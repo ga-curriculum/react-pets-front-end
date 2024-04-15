@@ -100,17 +100,74 @@ Next, pass this function as a prop to the `PetList` component and call it when a
   ))
 ```
 
-
 Before moving on, test that you can click on a pet and have the `selected` state update to the selected pet. You can check this with the Chrome React Dev Tools.
 
 Now that we have the selected pet in state, we can conditionally render the details of the pet in the UI.
 
-- Inside of `components` create a new file called `PetDetails.jsx`.
-  - In this file create a function component called `PetDetails`.
-  - This component should accept `props` as an argument.
-  - From the `PetDetails` component we should render the details of the pet.
-  - Make sure to export the `PetDetails` component at the end of the file.
-- Back in `App.jsx` import the `PetDetails` component.
-  - Conditionally render the `PetDetails` component based on the state of the selected pet.
+Inside of `components` create a new file called `PetDetails.jsx`.
+In this file create a function component called `PetDetails` which accepts `props` as an argument.
 
-Test it out in the browser and make sure you can click on a pet to see the details of the pet.
+Inside this `PetDetails` component, render the details of the pet - include the name, breed, and age information.
+
+We will also want to conditionally render a header that reads 'NO DETAILS' instead of pet details if no pet is currently selected. 
+
+You can choose to do this in a few ways: 
+
+- In a single return statement, use a ternary operator to either render the header or pet details, based on the status of `props.selected`. 
+
+or
+
+- If `props.selected` is falsy (`null`), return the header. As a result, if props.selected is not falsy, proceed to the normal return. 
+
+Either is fine - we'll demonstrate the second option, but both work well for this application: 
+
+```jsx
+// src/components/PetDetails.jsx
+
+const PetDetails = (props) => {
+
+  // return if props.selected is null
+  if(!props.selected) return <div><h1>NO DETAILS</h1></div>
+
+  return ( 
+    // return statement if props.selected has a truthy value
+  )
+}
+```
+
+Make sure to export the `PetDetails` component at the end of the file! 
+
+Finally, back in `App.jsx`, import the `PetDetails` component and add it to the return statement.
+
+```jsx
+// src/App.jsx
+
+import { useState, useEffect } from 'react'
+import * as petService from './services/petService'
+
+import PetList from './components/PetList'
+import PetDetails from './components/PetDetails'
+
+const App = () => {
+  const [petList, setPetList] = useState([])
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      const data = await petService.index()
+      setPetList(data.pets)
+    }
+    fetchPets()
+  }, [])
+
+  return (
+    <>
+      <PetList petList={petList} />
+      <PetDetails selected={selected} />
+    </>
+  )
+}
+
+export default App
+```
+
+Test it out in the browser and make sure you can click on a pet to see the details of the pet! 

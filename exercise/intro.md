@@ -33,10 +33,9 @@ This lab does not feature any routing, meaning that the user will not be navigat
 
 [tktk Hunter amazing graphic here]
   
-
 ## Items of Note
 
-This is a big lab and it is important to break it down into smaller pieces. It is suggested that you read through the full lab first to understand all that is being asked of you. Then, once you have read through, come back to the beginning and start with reading all the pets.
+This is a big lab and it is important to break it down into smaller pieces. The Read section of the instructions will be fairly thorough, to help set you up for success. The other three CRUD steps (Create, Update, Delete) will be more hands off, except whenever introducing new patterns or concepts. 
 
 Some other items to keep in mind:
 
