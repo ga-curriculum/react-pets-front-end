@@ -43,7 +43,7 @@ const PetForm = (props) => {
 
   return ( 
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label htmlFor="name"> Name </label>
         <input 
           id="name" 
@@ -206,11 +206,89 @@ Once the user has submitted a form, we want the form to close - this, along with
   }
 ```
 
-- Pass this new function as a prop to the `PetForm` component.
-- Inside of `PetForm.jsx` create a new function to handle the form submission.
-  - This function should accept the `event` as an argument.
-  - This function should prevent the default behavior of the form.
-  - This function should create a new pet object using the form data.
-  - This function should call a function passed down from `App.jsx` to handle the form submission.
+Pass this new function as a prop to the `PetForm` component.
+
+### Handle Form Submission
+
+For the final step of the create process, we need to handle the user submitting the form. 
+
+Inside of `PetForm.jsx` create a new function called `handleSubmitForm` to handle the form submission.
+
+`handleSubmitForm` will accept the event as an argument. To prevent the page from reloading (the default behavior for submitting a form), we'll call `evt.preventDefault()`.
+
+Next, we call `props.handleAddPet` and pass it `formData`. 
+
+```jsx
+// src/components/PetForm.jsx
+
+  const handleSubmitForm = (evt) => {
+    evt.preventDefault()
+    props.handleAddPet(formData)
+  }
+```
+
+Big picture, here's what happens when the user hits submit: 
+
+That `formData` object gets passed to our `create` service, is converted to JSON, gets sent to our controller on the backend, is used (as `req.body`) to create a new Pet, and then the controller sends the new Pet object back to us as JSON. We convert it back to useable JavaScript, where it is then added to a new array along with our existing state. Our `petList` state is then set to that new array, updating it. Once our state updates, React refreshes the UI, and the user sees their brand new Pet show up in the `PetList` component. 
+
+If that feels confusing, take a second to follow the data through your code! It's important to be able to visualize this flow of data when working with CRUD apps, and now that we're passing data both directions this is an excellent time to get our bearings. 
+
+Ok, almost done! As one final UI consideration, this function should reset `formData` back to initial (empty) values.
+
+```jsx
+// src/components/PetForm.jsx
+
+import { useState } from 'react'
+
+const PetForm = (props) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    breed: ''
+  })
+
+  const handleChange = (evt) => {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  }
+
+  const handleSubmitForm = (evt) => {
+    evt.preventDefault()
+    props.handleAddPet(formData)
+    setFormData({ name: '', age: '', breed: '' })
+  }
+
+  return ( 
+    <div>
+      <form>
+        <label htmlFor="name"> Name </label>
+        <input 
+          id="name" 
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required 
+        />
+        <label htmlFor="age"> Age </label>
+        <input 
+          id="age" 
+          name="age"
+          value={formData.age}
+          onChange={handleChange}
+        />
+        <label htmlFor="breed"> Breed </label>
+        <input 
+          id="breed"
+          name="breed"
+          value={formData.breed} 
+          onChange={handleChange}
+        />
+        <button type="submit">Add New Pet</button>
+      </form>
+    </div> 
+  );
+}
+ 
+export default PetForm;
+```
 
 Test this out in the browser and make sure you can create a new pet and see it displayed in the UI.
