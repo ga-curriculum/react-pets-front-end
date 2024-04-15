@@ -1,38 +1,160 @@
 # ![React Front End Pets Lab - Create](./assets/exercise-create.png)
 
-## Create
+In this section of the lab, we want to complete the create actions. Once again, let's take the minimum requirement we laid out in the intro: 
 
-In this section we want to complete the following tasks:
+#### Create a new Pet
+  - Conditionally render a form to create a new Pet
+  - Handle the form submission
+  - Display the new Pet in the UI
 
-- [ ] Create a new Pet
-  - [ ] Conditionally render a form to create a new Pet
-  - [ ] Handle the form submission
-  - [ ] Display the new Pet in the UI
+And convert them into User Stories: 
 
-### Step 1: Conditionally Render the Form
+- As a user, I want to be able to enter information into a form and use it to create a new Pet entry. 
 
-- Create a new component called `PetForm.jsx`. This should be in the `components` folder.
-  - Inside of `PetForm.jsx` create a function component that accepts `props` as an argument.
-  - Inside of the return statement of `PetForm.jsx` create a `form` element that will be used to create a new pet.
-  - Make sure to export the `PetForm` component at the end of the file.
-- Create a state variable inside of `App.jsx` to represent the form being open or closed. This should be a boolean value.
-- Still in `App.jsx` create a function to toggle the above state variable.
-  - Think through this toggle. Do we always want the form to be visible at the start of the application? What do we want the default state to be?
-- Now that we have a function to toggle the state variable, create a button that will call this function when clicked. This should be located in the `App.jsx` file.
-  - This button should conditionally render the form. If the form is open, the button should say "Close Form". If the form is closed, the button should say "Add Pet".
+## Step 1: Conditionally Render the Form
+
+In this step, we will be tackling rendering a form that the user can enter new Pet data into. As with pet details, forms for the `Create` process are often handled in separate pages that the user routes to. As we are not going to be routing in this lab, we will need to make use of state to keep track of whether to show the form to the user or not! 
+
+### Creating the Form UI
+
+Inside the `components` directory, create a new component called `PetForm.jsx`. 
+
+In `PetForm.jsx`, create a function component that accepts `props` as an argument. Inside of the return statement of `PetForm.jsx`, create a **controlled** `form` element that will be used to create a new pet.
+
+Make sure to export the `PetForm` component at the end of the file.
+
+```jsx
+// src/components/PetForm.jsx
+
+import { useState } from 'react'
+
+const PetForm = (props) => {
+  const initialState = {
+    name: '',
+    age: '',
+    breed: ''
+  }
+
+  const handleChange = (evt) => {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  }
+
+  return ( 
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name"> Name </label>
+        <input 
+          id="name" 
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required 
+        />
+        <label htmlFor="age"> Age </label>
+        <input 
+          id="age" 
+          name="age"
+          value={formData.age}
+          onChange={handleChange}
+        />
+        <label htmlFor="breed"> Breed </label>
+        <input 
+          id="breed"
+          name="breed"
+          value={formData.breed} 
+          onChange={handleChange}
+        />
+        <button type="submit"> Add New Pet</button>
+      </form>
+    </div> 
+  );
+}
+ 
+export default PetForm;
+```
+
+### Conditionally Render the Form
+
+Next, create a new state variable inside of `App.jsx` to represent the form being open or closed. When the page loads initially the form should not be open, so we can set the initial value to `false`: 
+
+```jsx
+// src/App.jsx
+
+const [isFormOpen, setIsFormOpen] = useState(false)
+```
+
+Next, still in `App.jsx`, create a function called `handleFormView` to toggle the above state variable. When the function is called, the Boolean value of `isFormOpen` should change from `false` to `true`, or vice versa. 
+
+Once the function is created, pass it down to `PetList` as a prop. 
+
+```jsx
+// src/App.jsx
+
+<PetList 
+  petList={petList} 
+  updateSelected={updateSelected} 
+  handleFormView={handleFormView}
+/>
+```
+
+Next, in `PetList.jsx`, create a button that will call `handleFormView` when clicked. Then, in order to determine what text the button should display to the user, we'll need to pass `isFormOpen` down to `PetList` as well. If the form is open (`true`), the button should say "Close Form". If the form is closed (`false`), the button should say "Add Pet". 
+
+```jsx
+// src/App.jsx
+
+<PetList 
+  petList={petList} 
+  updateSelected={updateSelected} 
+  handleFormView={handleFormView}
+  isFormOpen={isFormOpen}
+/>
+```
+
+```jsx
+// src/components/PetList.jsx
+
+  <button onClick={props.handleFormView}>
+    {props.isFormOpen ? 'Close Form' : 'New Pet'}
+  </button>
+```
 
 Test it out in the browser and make sure you can toggle the form open and closed.
 
-### Step 2: Handle the Form Submission and Display the New Pet
+## Step 2: Handle the Form Submission and Display the New Pet
 
-- Inside of `petService.js` create a new function called `createPet`. This function should:
+### Create the service
+
+Inside of `petService.js` create a new function called `createPet`. This function should:
   - Accept a pet object as an argument.
   - Use `fetch` to make a `POST` request to the base URL.
   - Use a `try...catch` block to handle any errors.
   - Use `.json()` method to parse the response. Ex: `res.json()`.
   - Return the parsed response.
-  - Make sure to export this function.
-- In `App.jsx` creact a new function to handle the creation of a new pet.
+
+This will largely resemble the service call you made in the Index step, with the exception that we're making a 'POST' request now instead of a 'GET' request. This means we'll need to specify a few things in the options object: 
+
+```jsx
+const create = async (formData) => {
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    return res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+```
+
+Make sure to export this function! 
+
+### Call the service 
+
+- In `App.jsx` create a new function to handle the creation of a new pet.
   - This function should accept the form data as an argument.
   - This function should call the `createPet` function and pass the form data to it.
   - This function should update the state variable that holds the pets with the new pet.

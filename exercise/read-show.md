@@ -161,7 +161,10 @@ const App = () => {
 
   return (
     <>
-      <PetList petList={petList} />
+      <PetList 
+        petList={petList}
+        updateSelected={updateSelected} 
+      />
       <PetDetails selected={selected} />
     </>
   )
