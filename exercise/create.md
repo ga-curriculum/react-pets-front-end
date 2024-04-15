@@ -134,7 +134,7 @@ Test it out in the browser and make sure you can toggle the form open and closed
 
 ### Create the service
 
-Inside of `petService.js` create a new function called `createPet`. This function should:
+Inside of `petService.js` create a new function called `create`. This function should:
   - Accept a pet object as an argument.
   - Use `fetch` to make a `POST` request to the base URL.
   - Use a `try...catch` block to handle any errors.
@@ -169,12 +169,43 @@ Make sure to export this function!
 
 ### Call the service 
 
-- In `App.jsx` create a new function to handle the creation of a new pet.
-  - This function should accept the form data as an argument.
-  - This function should call the `createPet` function and pass the form data to it.
-  - This function should update the state variable that holds the pets with the new pet.
-  - This function should close the form.
-  - This function should handle any errors.
+Now that our service is complete, it's time to write the function which will call upon our new service! As creating a new Pet will impact our `petList` state, we'll want to place the new function where that state lives - in our App's case, this is `App.jsx`. 
+
+In `App.jsx`, create a new async function named `handleAddPet` which accepts an object (our form data) as an argument.
+
+```jsx
+// src/App.jsx
+
+ const handleAddPet = async (formData) => {
+  }
+```
+
+This function will make an (`async`) call to `petService.create`, passing it `formData`. If everything goes well, `create` returns the created pet object. We'll invoke `setPetList` and pass it a new array comprised of the new pet object, followed by the existing `petList` which we add using the spread operator. 
+
+```jsx
+// src/App.jsx
+
+ const handleAddPet = async (formData) => {
+    // Call petService.create, assign return value to newPet
+    const newPet = await petService.create(formData)
+    // Add the pet object and the current petList to a new array, and
+    // set that array as the new petList
+    setPetList([newPet.pet, ...petList])
+  }
+```
+
+Once the user has submitted a form, we want the form to close - this, along with the new Pet showing up in the `PetList` component, will serve as feedback to the user that the form was submitted. Fortunately, all we need to do to accomplish that is call `setIsFormOpen` and pass it `false` at the end of our function. 
+
+```jsx
+// src/App.jsx
+
+ const handleAddPet = async (formData) => {
+    const newPet = await petService.create(formData)
+    setPetList([newPet.pet, ...petList])
+    setIsFormOpen(false)
+  }
+```
+
 - Pass this new function as a prop to the `PetForm` component.
 - Inside of `PetForm.jsx` create a new function to handle the form submission.
   - This function should accept the `event` as an argument.
