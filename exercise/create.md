@@ -19,7 +19,7 @@ In this step, we will be tackling rendering a form that the user can enter new P
 
 Inside the `components` directory, create a new component called `PetForm.jsx`. 
 
-In `PetForm.jsx`, create a function component that accepts `props` as an argument. Inside of the return statement of `PetForm.jsx`, create a **controlled** `form` element that will be used to create a new pet.
+In `PetForm.jsx`, create a function component that accepts `props` as an argument. Inside of the return statement of `PetForm.jsx`, create a **controlled** `form` element that will be used to create a new pet. 
 
 Make sure to export the `PetForm` component at the end of the file.
 
@@ -29,12 +29,14 @@ Make sure to export the `PetForm` component at the end of the file.
 import { useState } from 'react'
 
 const PetForm = (props) => {
-  const initialState = {
+  // formData state to control the form
+  const [formData, setFormData] = useState({
     name: '',
     age: '',
     breed: ''
-  }
+  })
 
+  // handleChange function to update formData state
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   }
@@ -64,7 +66,7 @@ const PetForm = (props) => {
           value={formData.breed} 
           onChange={handleChange}
         />
-        <button type="submit"> Add New Pet</button>
+        <button type="submit">Add New Pet</button>
       </form>
     </div> 
   );
@@ -85,6 +87,14 @@ const [isFormOpen, setIsFormOpen] = useState(false)
 
 Next, still in `App.jsx`, create a function called `handleFormView` to toggle the above state variable. When the function is called, the Boolean value of `isFormOpen` should change from `false` to `true`, or vice versa. 
 
+```jsx
+// src/App.jsx
+
+const handleFormView = () => {
+    setIsFormOpen(!isFormOpen)
+}
+```
+
 Once the function is created, pass it down to `PetList` as a prop. 
 
 ```jsx
@@ -97,7 +107,7 @@ Once the function is created, pass it down to `PetList` as a prop.
 />
 ```
 
-Next, in `PetList.jsx`, create a button that will call `handleFormView` when clicked. Then, in order to determine what text the button should display to the user, we'll need to pass `isFormOpen` down to `PetList` as well. If the form is open (`true`), the button should say "Close Form". If the form is closed (`false`), the button should say "Add Pet". 
+Next, in `PetList.jsx`, create a button that will call `handleFormView` when clicked. In order to determine what text the button should display to the user, we'll need to pass `isFormOpen` down to `PetList` as well. If the form is open (`true`), the button should say "Close Form". If the form is closed (`false`), the button should say "Add Pet". 
 
 ```jsx
 // src/App.jsx
@@ -137,10 +147,15 @@ This will largely resemble the service call you made in the Index step, with the
 const create = async (formData) => {
   try {
     const res = await fetch(BASE_URL, {
+      // We specify that this is a 'POST' request
       method: 'POST',
+      // We're sending JSON data, so we attach a Content-Type header
+      // and specify that the data being sent is type 'application/json'
       headers: {
         'Content-Type': 'application/json'
       },
+      // The formData, converted to JSON, is sent as the body
+      // This will be received on the backend as req.body
       body: JSON.stringify(formData)
     })
     return res.json()
