@@ -117,7 +117,7 @@ We can use the same ternary logic to provide some minor UI feedback to the user,
 <button type="submit"> {props.selected ? 'Update Pet' : 'Add New Pet'} </button>
 ```
 
-One final step - now that we're using a variable for `initialState`, we can clean up our `handleSubmitForm` function a bit as well: 
+One final step - now that we're handling the initial state of our form whenever the user toggles the form on, we can remove the line that resets form data: 
 
 ```jsx
 // src/components/PetForm.jsx
@@ -125,7 +125,7 @@ One final step - now that we're using a variable for `initialState`, we can clea
  const handleSubmitForm = (evt) => {
     evt.preventDefault()
     props.handleAddPet(formData)
-    setFormData(initialState)
+    // remove: setFormData({ name: '', age: '', breed: '' })
   }
 ```
 
@@ -133,22 +133,86 @@ Test it out in the browser and make sure the form is populated with the selected
 
 ## Step 2: Handle the Form Submission and Display the Updated Pet
 
+YOU-DO 💪 
 
+Next, we'll need to create the service that updates a Pet! Hopefully by now this is a pattern that is getting more familiar - try to solve this on your own using the following instruction: 
 
 - Inside of `petService.js` create a new function called `updatePet`. This function should:
-  - Accept a pet object as an argument.
-  - Use `fetch` to make a `PUT` request to the base URL with the `id` of the pet.
+  - Accept a pet object (form data) and a pet id as an argument.
+  - Use `fetch` to make a `PUT` request to the base URL with the `id` of the pet (check your server code if you need clarity on the exact URL).
   - Use a `try...catch` block to handle any errors.
-  - Use `.json()` method to parse the response. Ex: `res.json()`.
+  - Use the `.json()` method to parse the response. Ex: `res.json()`.
   - Return the parsed response.
-  - Make sure to export this function.
-- In `App.jsx` create a new function to handle the update of a pet.
-  - This function should accept the form data and pet id as an argument.
-  - This function should call the `updatePet` function and pass the form data to it.
-  - This function should update the state variable that holds the pets with the updated pet.
-  - This function should close the form.
-  - This function should handle any errors.
-- Pass this new function as a prop to the `PetForm` component.
-- In the `PetForm` component update the `handleSubmit` function to call the update pet function passed down from `App.jsx` if there is a selected pet. If there is no selected pet, call the create pet function.
+  - Export this function.
 
-Test it out in the browser and make sure you can update a pet and see it displayed in the UI.
+- Next, in `App.jsx` we'll want to create the handler function which invokes the service and updates `petList` state. 
+  - This function should accept form data and a pet id as an argument.
+  - This function should call the `updatePet` function and pass the form data and pet id to it.
+  - This function should update `petList` state with the updated pet.
+  - This function should close the form.
+
+Once this is done, pass this new function as a prop to the `PetForm` component. 
+
+In the `PetForm` component, update the `handleSubmit` function to call the `handleUpdatePet` if there is a selected pet. If there is no selected pet, call the create pet function.
+
+```jsx
+// src/components/PetForm.jsx
+
+const handleSubmit = (evt) => {
+    evt.preventDefault()
+    if(props.selected){
+      // Don't forget to pass both formData and the ._id!
+      props.handleUpdatePet(formData, props.selected._id)
+    } else {
+      props.handleAddPet(formData)
+    } 
+}
+```
+
+Test it out in the browser and make sure you can update a pet and see it displayed in the UI. 
+
+If you ran into any issues, you can check your work below: 
+
+```js
+// src/services/PetService.js
+
+const updatePet = async (formData, petId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${petId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    return res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+```
+
+
+There are a few different ways to handle updating state with an edited Pet. Below, we use `.map()` to test each element's `._id`, replacing the existing entry with the updated one only if the id's match.
+```jsx
+// src/App.jsx
+
+const handleUpdatePet = async (formData, petId) => {
+    const updatedPet = await petService.updatePet(formData, petId)
+    const updatedPetList = petList.map(pet => (
+      // If the id of the current pet is not the same as the updated pet's id, return the existing pet. If the id's match, instead return the updated pet. 
+      pet._id !== updatedPet.pet._id 
+        ? pet 
+        : updatedPet.pet
+    ))
+    // Set petList state to this updated array
+    setPetList(updatedPetList)
+    setIsFormOpen(false)
+  }
+```
+
+If you wanted to ensure that the edited Pet was always at the top of the petList, you could also filter out the updated pet, and then create a new array with `updatedPet.pet` as the first entry, and the filtered array spread after it. 
+
+```jsx
+setPetList([updatedPet.pet, ...petList.filter(pet => pet._id !== petId)])
+```
