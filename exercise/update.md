@@ -1,20 +1,60 @@
 # ![React Front End Pets Lab - Update](./assets/exercise-update.png)
 
-In this section we want to complete the following tasks:
+## Update
 
-- [ ] Update a Pet
-  - [ ] Conditionally render form to update a Pet
-  - [ ] Handle the form submission
-  - [ ] Display the updated Pet in the UI
+In this section of the lab, we will be completing the update actions. Let's take the minimum requirement we laid out in the intro: 
 
-### Step 1: Conditionally Render the Form
+#### Update a Pet
+  - Conditionally render a form to update a Pet
+  - Handle the form submission
+  - Display the updated Pet in the UI
 
-We already have a form and a function that allows us to toggle the form open and closed. We can use this same form to update a pet. 
+And convert them into User Stories: 
 
-- Inside of `PetDetail.jsx` create a new button that will call the function to toggle the form open and closed.
-  - This button should say "Edit Pet".
-  - This button should call the function to toggle the form open and closed when clicked.
-  - Make sure to pass the function to toggle the form as a prop to the `PetDetail` component.
+- As a user, I want to be able to update a Pet entry via a form. 
+
+## Step 1: Conditionally Render the Form
+
+We already have a form, as well as a function that allows us to toggle the form open and closed. We can use this same form to update a pet, with one adjustment - when a user is updating a pet, we'll want to pass the `PetForm` component the currently selected pet object so that we can pre-fill our form inputs. 
+
+Inside of `PetDetail.jsx`, let's create a new button that will call the function to toggle the form open and closed. As mentioned above, we'll want to pass the `handleFormView` function the currently selected pet: 
+  
+```jsx
+<button onClick={() => props.handleFormView(props.selected)}>Edit</button>
+```
+
+Make sure to pass the function to toggle the form as a prop to the `PetDetail` component.
+
+```jsx
+// src/App.jsx
+
+<PetDetail 
+  selected={selected} 
+  handleFormView={handleFormView} 
+/>
+```
+
+Before we move on, let's make one more adjustment to our code. Currently, our `handleFormView` function doesn't accept any arguments: 
+
+```jsx
+// src/App.jsx
+
+const handleFormView = () => {
+    setIsFormOpen(!isFormOpen)
+}
+```
+
+
+
+```jsx
+// src/App.jsx
+
+ const handleFormView = (pet) => {
+    if(!pet.name) setSelected(null)
+    setIsFormOpen(!isFormOpen)
+  }
+
+```
 
 Test it out in the browser and make sure you can toggle the form open and closed. Before we handle the form submission let's pass in the selected pet to the form.
 

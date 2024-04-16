@@ -128,6 +128,27 @@ Next, in `PetList.jsx`, create a button that will call `handleFormView` when cli
   </button>
 ```
 
+Finally, we'll need to conditionally render either the `PetForm` component or the `PetDetail` component based on our `isFormOpen` state: 
+
+```jsx
+// src/App.jsx
+
+return (
+    <>
+      <PetList 
+        petList={petList} 
+        updateSelected={updateSelected} 
+        handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
+      />
+      {isFormOpen 
+        ? <PetForm handleAddPet={handleAddPet} /> 
+        : <PetDetail selected={selected} />
+      }
+    </>
+  )
+```
+
 Test it out in the browser and make sure you can toggle the form open and closed.
 
 ## Step 2: Handle the Form Submission and Display the New Pet
