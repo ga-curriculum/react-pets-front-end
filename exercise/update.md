@@ -133,9 +133,9 @@ Test it out in the browser and make sure the form is populated with the selected
 
 ## Step 2: Handle the Form Submission and Display the Updated Pet
 
-YOU-DO 💪 
+## YOU-DO 💪 
 
-Next, we'll need to create the service that updates a Pet! Hopefully by now this is a pattern that is getting more familiar - try to solve this on your own using the following instruction: 
+Next, we'll need to create the service that updates a Pet! Hopefully by now this is a pattern that is getting more familiar - take some time to try to solve this on your own using the following instructions: 
 
 - Inside of `petService.js` create a new function called `updatePet`. This function should:
   - Accept a pet object (form data) and a pet id as an argument.
@@ -170,6 +170,8 @@ const handleSubmit = (evt) => {
 ```
 
 Test it out in the browser and make sure you can update a pet and see it displayed in the UI. 
+
+### Check your work
 
 If you ran into any issues, you can check your work below: 
 
