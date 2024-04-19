@@ -145,11 +145,12 @@ Next, we'll need to create the service that updates a Pet! Hopefully by now this
   - Return the parsed response.
   - Export this function.
 
-- Next, in `App.jsx` we'll want to create the handler function which invokes the service and updates `petList` state. 
+- Next, in `App.jsx` we'll want to create a handler function called `handleUpdatePet` which invokes the service and updates `petList` state. 
   - This function should accept form data and a pet id as an argument.
   - This function should call the `updatePet` function and pass the form data and pet id to it.
   - This function should update `petList` state with the updated pet.
-  - This function should close the form.
+  - This function should close the form and set `selected` state to the `updatedPet` object.
+  - If `updatedPet` has an error, throw a new `Error` and log the error. 
 
 Once this is done, pass this new function as a prop to the `PetForm` component. 
 
@@ -200,23 +201,27 @@ There are a few different ways to handle updating state with an edited Pet. Belo
 // src/App.jsx
 
 const handleUpdatePet = async (formData, petId) => {
+  try {
     const updatedPet = await petService.updatePet(formData, petId)
+
+    // handle potential errors
+    if (updatedPet.error) {
+      throw new Error(updatedPet.error)
+    }
+
     const updatedPetList = petList.map(pet => (
       // If the id of the current pet is not the same as the updated pet's id, return the existing pet. If the id's match, instead return the updated pet. 
-      pet._id !== updatedPet.pet._id 
+      pet._id !== updatedPet._id 
         ? pet 
-        : updatedPet.pet
+        : updatedPet
     ))
     // Set petList state to this updated array
     setPetList(updatedPetList)
-    // If we don't set selected to the updated pet object, the details page will still be referencing outdated data.
+    // If we don't set selected to the updated pet object, the details page will reference outdated data until the page reloads.
     setSelected(updatedPet)
     setIsFormOpen(false)
+  } catch (error) {
+    console.log(error)
   }
-```
-
-If you wanted to ensure that the edited Pet was always at the top of the petList, you could also filter out the updated pet, and then create a new array with `updatedPet.pet` as the first entry, and the filtered array spread after it. 
-
-```jsx
-setPetList([updatedPet.pet, ...petList.filter(pet => pet._id !== petId)])
+}
 ```
