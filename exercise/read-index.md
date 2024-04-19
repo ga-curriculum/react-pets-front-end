@@ -189,6 +189,54 @@ const App = () => {
 }
 ```
 
+### Error Handling
+
+Let's take a second to talk about error handling for our application. In the backend, the following controller function is responding to our request to `/pets`: 
+
+```js
+// READ - GET - /pets
+router.get('/', async (req, res) => {
+    try {
+      const foundPets = await Pet.find();
+      res.status(200).json(foundPets);
+    } catch (error) {
+      res.status(500).json({ error: error.message }); 
+    }
+  });
+```
+
+From this, we know that our response will be one of two things: 
+- An array of pets
+- An object with an error property
+
+In the instance that the API sends back an error object, we know something went wrong! Using an `if` statement, we can check if the response has an `error` property, which will only be the case if our controller caught an error. If so, we'll throw a new `Error` - this time in our handler function - passing the error contents to the `catch` block. 
+
+Throwing an error also prevents statements after the `throw` from being executed, so we don't have to worry about accidentally setting `petList` state to an error object. 
+
+```jsx
+// src/App.jsx
+
+useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const pets = await petService.index()
+        // Don't forget the pass the error object to the new Error
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        // Log the error object
+        console.log(error)
+      }
+    }
+    fetchPets()
+  }, [])
+```
+
+In the `fetchPets`'s `catch` block, we simply log the error. For this app, having any server-side issues show up in the client-side console is enough to help make debugging easier. Big picture, this type of error handling setup also allows us to provide error feedback in the UI as well - however that's not within the scope of this particular lesson. 
+
 ### Displaying the Data
 
 Next, let's set up our UI to display the pets in our state.
