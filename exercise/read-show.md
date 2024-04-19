@@ -62,11 +62,21 @@ function App() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const data = await petService.index()
-      setPetList(data.pets)
+      try {
+        const pets = await petService.index()
+
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchPets()
   }, [])
+
   // Add the following: 
   const updateSelected = (pet) => {
     setSelected(pet)
@@ -153,11 +163,24 @@ const App = () => {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const data = await petService.index()
-      setPetList(data.pets)
+      try {
+        const pets = await petService.index()
+
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchPets()
   }, [])
+
+  const updateSelected = (pet) => {
+    setSelected(pet)
+  }
 
   return (
     <>
