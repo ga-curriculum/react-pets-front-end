@@ -29,9 +29,10 @@ Don't forget to export this function so we can use it in the next step!
 
 - In `App.jsx` create a new function called `handleRemovePet` to handle the deletion of a pet.
   - This function should accept the `id` of the pet as an argument.
-  - This function should call the `deletePet` function and pass the `id` to it.
+  - This function should call the `deletePet` function and pass the `id` to it, assigning to response to a `deletedPet` variable. 
   - This function should use `.filter()` to remove the pet from `petList` state.
   - This function should set `selected` state to `null`, and `isFormOpen` state to `false`
+  - This function should check if `deletedPet` has an `error` property, and throw a new `Error` if so, logging the error to the console.
 
 ## Step 2: Remove the Pet from the UI
 
@@ -102,8 +103,17 @@ function App() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const pets = await petService.index()
-      setPetList(pets)
+      try {
+        const pets = await petService.index()
+
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchPets()
   }, [])
@@ -118,20 +128,39 @@ function App() {
   }
 
   const handleAddPet = async (formData) => {
-    const createdPet = await petService.create(formData)
-    setPetList([createdPet, ...petList])
-    setIsFormOpen(false)
+    try {
+      const newPet = await petService.create(formData)
+      
+      if(newPet.error) {
+        throw new Error(newPet.error)
+      }
+
+      setPetList([newPet, ...petList])
+      setIsFormOpen(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleUpdatePet = async (formData, petId) => {
-    const updatedPet = await petService.updatePet(formData, petId)
-    const updatedPetList = petList.map(pet => (
-      pet._id !== updatedPet._id 
-        ? pet 
-        : updatedPet
-    ))
-    setPetList(updatedPetList)
-    setIsFormOpen(false)
+    try {
+      const updatedPet = await petService.updatePet(formData, petId)
+
+      if (updatedPet.error) {
+        throw new Error(updatedPet.error)
+      }
+  
+      const updatedPetList = petList.map(pet => (
+        pet._id !== updatedPet._id 
+          ? pet 
+          : updatedPet
+      ))
+      setPetList(updatedPetList)
+      setSelected(updatedPet)
+      setIsFormOpen(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleRemovePet = async (petId) => {
