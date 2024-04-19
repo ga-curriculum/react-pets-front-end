@@ -20,6 +20,7 @@ In this lesson students will use React to build a front end that consumes a REST
   - [Update](./exercise/update.md)
   - [Delete](./exercise/delete.md)
 
+[tktk leave link to lesson final code?]
 ## Solution code
 
 🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-front-end-lab-pets-solution)
