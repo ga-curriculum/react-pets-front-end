@@ -2,7 +2,7 @@
 
 ## About
 
-In this lab students will consume from a RESTful API to create, read, update, and delete pet data. Students will use React to build a front end that will allow users to interact with the API as a SPA. This lab is a basic introduction to consuming APIs with React and **does not** include any React Router to change views; instead, students will use conditional rendering to display different views.
+In this lab students will use React to build a front end that consumes a RESTful API, allowing users to create, read, update, and delete data. This lab is a basic introduction to consuming APIs with React and **does not** include React Router to change views; instead, students will use conditional rendering to display different views.
 
 ## Prerequisites
 
@@ -17,7 +17,8 @@ Estimated time to complete core lab exercise: **tktk min**
 - [Setup](./setup/README.md)
 - Lab Exercises:
   - [Intro](./exercise/intro.md)
-  - [Read](./exercise/read.md)
+  - [Read - Index](./exercise/read-index.md)
+  - [Read - Show](./exercise/read-show.md)
   - [Create](./exercise/create.md)
   - [Update](./exercise/update.md)
   - [Delete](./exercise/delete.md)
