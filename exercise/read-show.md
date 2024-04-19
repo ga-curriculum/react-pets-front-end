@@ -62,11 +62,21 @@ function App() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const data = await petService.index()
-      setPetList(data.pets)
+      try {
+        const pets = await petService.index()
+
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchPets()
   }, [])
+
   // Add the following: 
   const updateSelected = (pet) => {
     setSelected(pet)
@@ -104,10 +114,10 @@ Before moving on, test that you can click on a pet and have the `selected` state
 
 Now that we have the selected pet in state, we can conditionally render the details of the pet in the UI.
 
-Inside of `components` create a new file called `PetDetails.jsx`.
-In this file create a function component called `PetDetails` which accepts `props` as an argument.
+Inside of `components` create a new file called `PetDetail.jsx`.
+In this file create a function component called `PetDetail` which accepts `props` as an argument.
 
-Inside this `PetDetails` component, render the details of the pet - include the name, breed, and age information.
+Inside this `PetDetail` component, render the details of the pet - include the name, breed, and age information.
 
 We will also want to conditionally render a header that reads 'NO DETAILS' instead of pet details if no pet is currently selected. 
 
@@ -122,9 +132,9 @@ or
 Either is fine - we'll demonstrate the second option, but both work well for this application: 
 
 ```jsx
-// src/components/PetDetails.jsx
+// src/components/PetDetail.jsx
 
-const PetDetails = (props) => {
+const PetDetail = (props) => {
 
   // return if props.selected is null
   if(!props.selected) return <div><h1>NO DETAILS</h1></div>
@@ -135,9 +145,9 @@ const PetDetails = (props) => {
 }
 ```
 
-Make sure to export the `PetDetails` component at the end of the file! 
+Make sure to export the `PetDetail` component at the end of the file! 
 
-Finally, back in `App.jsx`, import the `PetDetails` component and add it to the return statement.
+Finally, back in `App.jsx`, import the `PetDetail` component and add it to the return statement.
 
 ```jsx
 // src/App.jsx
@@ -146,18 +156,31 @@ import { useState, useEffect } from 'react'
 import * as petService from './services/petService'
 
 import PetList from './components/PetList'
-import PetDetails from './components/PetDetails'
+import PetDetail from './components/PetDetail'
 
 const App = () => {
   const [petList, setPetList] = useState([])
 
   useEffect(() => {
     const fetchPets = async () => {
-      const data = await petService.index()
-      setPetList(data.pets)
+      try {
+        const pets = await petService.index()
+
+        if(pets.error){
+          throw new Error(pets.error)
+        }
+
+        setPetList(pets)
+      } catch (error) {
+        console.log(error)
+      }
     }
     fetchPets()
   }, [])
+
+  const updateSelected = (pet) => {
+    setSelected(pet)
+  }
 
   return (
     <>
@@ -165,7 +188,7 @@ const App = () => {
         petList={petList}
         updateSelected={updateSelected} 
       />
-      <PetDetails selected={selected} />
+      <PetDetail selected={selected} />
     </>
   )
 }

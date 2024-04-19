@@ -2,15 +2,12 @@
 
 ## About
 
-In this lab students will use React to build a front end that consumes a RESTful API, allowing users to create, read, update, and delete data. This lab is a basic introduction to consuming APIs with React and **does not** include React Router to change views; instead, students will use conditional rendering to display different views.
+In this lesson students will use React to build a front end that consumes a RESTful API, allowing users to create, read, update, and delete data. This lesson is a basic introduction to consuming APIs with React and **does not** include React Router to change views; instead, students will use conditional rendering to display different components.
 
 ## Prerequisites
 
-- tktk
+- Express REST API
 
-## Time to complete
-
-Estimated time to complete core lab exercise: **tktk min**
 
 ## Content
 
@@ -23,6 +20,7 @@ Estimated time to complete core lab exercise: **tktk min**
   - [Update](./exercise/update.md)
   - [Delete](./exercise/delete.md)
 
+[tktk leave link to lesson final code?]
 ## Solution code
 
 🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-front-end-lab-pets-solution)

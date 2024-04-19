@@ -1,5 +1,7 @@
 # ![React Front End Pets Lab - Create](./assets/exercise-create.png)
 
+## Create
+
 In this section of the lab, we want to complete the create actions. Once again, let's take the minimum requirement we laid out in the intro: 
 
 #### Create a new Pet
@@ -128,6 +130,27 @@ Next, in `PetList.jsx`, create a button that will call `handleFormView` when cli
   </button>
 ```
 
+Finally, we'll need to conditionally render either the `PetForm` component or the `PetDetail` component based on our `isFormOpen` state: 
+
+```jsx
+// src/App.jsx
+
+return (
+    <>
+      <PetList 
+        petList={petList} 
+        updateSelected={updateSelected} 
+        handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
+      />
+      {isFormOpen 
+        ? <PetForm handleAddPet={handleAddPet} /> 
+        : <PetDetail selected={selected} />
+      }
+    </>
+  )
+```
+
 Test it out in the browser and make sure you can toggle the form open and closed.
 
 ## Step 2: Handle the Form Submission and Display the New Pet
@@ -171,12 +194,17 @@ Make sure to export this function!
 
 Now that our service is complete, it's time to write the function which will call upon our new service! As creating a new Pet will impact our `petList` state, we'll want to place the new function where that state lives - in our App's case, this is `App.jsx`. 
 
-In `App.jsx`, create a new async function named `handleAddPet` which accepts an object (our form data) as an argument.
+In `App.jsx`, create a new async function named `handleAddPet` which accepts an object (our form data) as an argument. Add the structure for a `try/catch` statement as well: 
 
 ```jsx
 // src/App.jsx
 
- const handleAddPet = async (formData) => {
+  const handleAddPet = async (formData) => {
+    try {
+
+    } catch (error) {
+
+    }
   }
 ```
 
@@ -186,11 +214,15 @@ This function will make an (`async`) call to `petService.create`, passing it `fo
 // src/App.jsx
 
  const handleAddPet = async (formData) => {
+    try {
     // Call petService.create, assign return value to newPet
     const newPet = await petService.create(formData)
     // Add the pet object and the current petList to a new array, and
     // set that array as the new petList
-    setPetList([newPet.pet, ...petList])
+    setPetList([newPet, ...petList])
+    } catch (error) {
+
+    }
   }
 ```
 
@@ -200,13 +232,41 @@ Once the user has submitted a form, we want the form to close - this, along with
 // src/App.jsx
 
  const handleAddPet = async (formData) => {
-    const newPet = await petService.create(formData)
-    setPetList([newPet.pet, ...petList])
-    setIsFormOpen(false)
+    try {
+      const newPet = await petService.create(formData)
+      setPetList([newPet, ...petList])
+      setIsFormOpen(false)
+    } catch (error) {
+
+    }
   }
 ```
 
-Pass this new function as a prop to the `PetForm` component.
+### Error Handling
+
+As usual, we need to also account for any potential errors. Let's check if the response - `newPet` - has an error property. If so, we'll throw a new `Error` and pass it to the `catch` block. 
+
+```jsx
+// src/App.jsx
+
+const handleAddPet = async (formData) => {
+    try {
+      const newPet = await petService.create(formData)
+      
+      if(newPet.error) {
+        throw new Error(newPet.error)
+      }
+
+      setPetList([newPet, ...petList])
+      setIsFormOpen(false)
+    } catch (error) {
+      // Log the error to the console
+      console.log(error)
+    }
+  }
+```
+
+Finally, pass `handleAddPet` as a prop to the `PetForm` component.
 
 ### Handle Form Submission
 
