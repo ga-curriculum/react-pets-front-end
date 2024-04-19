@@ -6,7 +6,7 @@ In this lab students will use React to build a front end that consumes a RESTful
 
 ## Prerequisites
 
-- tktk
+- Express REST API
 
 ## Time to complete
 

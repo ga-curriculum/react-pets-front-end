@@ -209,6 +209,8 @@ const handleUpdatePet = async (formData, petId) => {
     ))
     // Set petList state to this updated array
     setPetList(updatedPetList)
+    // If we don't set selected to the updated pet object, the details page will still be referencing outdated data.
+    setSelected(updatedPet)
     setIsFormOpen(false)
   }
 ```

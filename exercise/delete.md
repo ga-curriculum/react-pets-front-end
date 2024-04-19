@@ -24,7 +24,6 @@ Implementing delete functionality will follow similar patterns to the one establ
   - Accept the `id` of the pet as an argument.
   - Use `fetch` to make a `DELETE` request to the base URL with the `id` of the pet.
   - Use a `try...catch` block to handle any errors.
-  - We're not worrying about error handling in this lesson, so we can just return the string 'Deleted' from this function, which we'll use as a proxy for a successful delete message/notification being returned from the server. 
 
 Don't forget to export this function so we can use it in the next step! 
 
@@ -32,6 +31,7 @@ Don't forget to export this function so we can use it in the next step!
   - This function should accept the `id` of the pet as an argument.
   - This function should call the `deletePet` function and pass the `id` to it.
   - This function should use `.filter()` to remove the pet from `petList` state.
+  - This function should set `selected` state to `null`, and `isFormOpen` state to `false`
 
 ## Step 2: Remove the Pet from the UI
 
@@ -135,9 +135,19 @@ function App() {
   }
 
   const handleRemovePet = async (petId) => {
-    const deletedPet = await petService.deletePet(petId)
-    setPetList(petList.filter(pet => pet._id !== deletedPet._id))
-    setIsFormOpen(false)
+    try {
+      const deletedPet = await petService.deletePet(petId)
+
+      if (deletedPet.error) {
+        throw new Error(deletedPet.error)
+      }
+
+      setPetList(petList.filter(pet => pet._id !== deletedPet._id))
+      setSelected(null)
+      setIsFormOpen(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
