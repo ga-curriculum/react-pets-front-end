@@ -1,5 +1,7 @@
 # ![React Front End Pets Lab - Read - Show](./assets/exercise-read.png)
 
+**Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Show functionality in a React application.
+
 ## Read - Show
 
 As with the index section, let's look at the minimum requirements for showing a single pet: 

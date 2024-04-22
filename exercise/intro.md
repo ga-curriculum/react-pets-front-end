@@ -1,5 +1,7 @@
 # ![React Front End Pets Lab - Intro](./assets/exercise-intro.png)
 
+**Learning Objective**: By the end of this lesson, the learner will understand the minimum requirements and component hierarchy of the app.
+
 ## Introduction
 
 In this lab, you'll be building a Single Page Application (SPA) using React. You will also be using `fetch` to consume from a previously built RESTful API. You will be able to Create, Read, Update, and Delete (CRUD) pets from the API, and conditionally render the UI based on the state of the application.

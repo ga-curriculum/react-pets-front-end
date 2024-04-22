@@ -1,5 +1,7 @@
 # ![React Front End Pets Lab - Create](./assets/exercise-create.png)
 
+**Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Create functionality in a React application.
+
 ## Create
 
 In this section of the lab, we want to complete the create actions. Once again, let's take the minimum requirement we laid out in the intro: 

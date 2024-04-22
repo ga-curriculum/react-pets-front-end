@@ -8,22 +8,20 @@ In this lesson students will use React to build a front end that consumes a REST
 
 - Express REST API
 
-
 ## Content
 
-- [Setup](./setup/README.md)
-- Lab Exercises:
-  - [Intro](./exercise/intro.md)
-  - [Read - Index](./exercise/read-index.md)
-  - [Read - Show](./exercise/read-show.md)
-  - [Create](./exercise/create.md)
-  - [Update](./exercise/update.md)
-  - [Delete](./exercise/delete.md)
+| Lesson | Skills |
+| [Setup](./setup/README.md) | Setting up the development environment |
+| [Intro](./exercise/intro.md) | Scoping minimum requirements and building component hierarchy | 
+| [Read - Index](./exercise/read-index.md) | Implementing Index functionality
+| [Read - Show](./exercise/read-show.md) | Implementing Show functionality
+| [Create](./exercise/create.md) | Implementing Create functionality
+| [Update](./exercise/update.md) | Implementing Update functionality
+| [Delete](./exercise/delete.md) | Implementing Delete functionality
 
-[tktk leave link to lesson final code?]
-## Solution code
+## References
 
-🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-front-end-lab-pets-solution)
+📖 [Reference Materials](./references/README.md)
 
 ## Internal resources
 
