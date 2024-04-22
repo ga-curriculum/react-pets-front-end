@@ -7,6 +7,7 @@ In this lesson students will use React to build a front end that consumes a REST
 ## Content
 
 | Lesson | Skills |
+| -- | -- |
 | [Setup](./setup/README.md) | Setting up the development environment |
 | [Intro](./exercise/intro.md) | Scoping minimum requirements and building component hierarchy | 
 | [Read - Index](./exercise/read-index.md) | Implementing Index functionality
