@@ -1,4 +1,4 @@
-# ![React Front End Pets Lab](./assets/hero.png)
+# ![React and RESTful APIs - Pets](./assets/hero.png)
 
 ## About
 
@@ -13,12 +13,12 @@ In this lesson students will use React to build a front end that consumes a REST
 | Lesson | Video Time | Video | Skills |
 | -- | -- | -- | -- | 
 | [Setup](./setup/README.md) | -- | -- | Setting up the development environment |
-| [Intro](./exercise/intro.md) | -- | -- | Scoping minimum requirements and building component hierarchy | 
-| [Read - Index](./exercise/read-index.md) | -- | -- | Implementing Index functionality |
-| [Read - Show](./exercise/read-show.md) | -- | -- | Implementing Show functionality |
-| [Create](./exercise/create.md) | -- | -- | Implementing Create functionality |
-| [Update](./exercise/update.md) | -- | -- | Implementing Update functionality |
-| [Delete](./exercise/delete.md) | -- | -- | Implementing Delete functionality |
+| [Intro](./intro/README.md) | -- | -- | Scoping minimum requirements and building component hierarchy | 
+| [Read - Index](./read-index/README.md) | -- | -- | Implementing Index functionality |
+| [Read - Show](./read-show/README.md) | -- | -- | Implementing Show functionality |
+| [Create](./create/README.md) | -- | -- | Implementing Create functionality |
+| [Update](./update/README.md) | -- | -- | Implementing Update functionality |
+| [Delete](./delete/README.md) | -- | -- | Implementing Delete functionality |
 | Total Content | -- | -- | |
 
 ## References

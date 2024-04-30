@@ -1,10 +1,10 @@
-# ![React Front End Pets Lab - Read - Index](./assets/exercise-read.png)
+# ![React and RESTful APIs - Pets - Read - Index](./assets/read.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Index functionality in a React application.
 
 ## Read - Index
 
-In this section of the lab, we want to complete the index read actions. For practice, let's take the minimum requirement we laid out in the intro: 
+In this section of the lesson, we want to complete the index read actions. For practice, let's take the minimum requirement we laid out in the intro: 
 
 #### Read all Pets
   - Display all Pets in the UI
@@ -14,7 +14,7 @@ And translate it into a User Story:
 - As a user, I want to be able to view all of the Pets.
 
 
-❗ If you deleted all of the pets in the database at the end of the Express REST API lesson, open up Postman and add a few new pets so that you'll have data for this section of the lab. ❗
+❗ If you deleted all of the pets in the database at the end of the Express REST API lesson, open up Postman and add a few new pets so that you'll have data for this section of the lesson. ❗
 
 ### Creating the Service
 
@@ -30,7 +30,7 @@ const index = async () => {
 }
 ```
 
-Why async? All of the service functions we'll build for this lab will be making asynchronous fetch calls to the API, so in order to `await` the response from our fetch call, we'll need to use an `async` function. 
+Why async? All of the service functions we'll build for this lesson will be making asynchronous fetch calls to the API, so in order to `await` the response from our fetch call, we'll need to use an `async` function. 
 
 Next, let's go ahead and code the fetch call. Remember that in the setup we created a `BASE_URL` variable and assigned it to the base url of our API (in this case, http://localhost:3000/pets). Since we're making a GET request (the default method for `fetch`) to `/pets`, we just need to pass `BASE_URL` to our fetch call: 
 

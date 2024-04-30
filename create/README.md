@@ -1,10 +1,10 @@
-# ![React Front End Pets Lab - Create](./assets/exercise-create.png)
+# ![React and RESTful APIs - Pets - Create](./assets/exercise-create.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Create functionality in a React application.
 
 ## Create
 
-In this section of the lab, we want to complete the create actions. Once again, let's take the minimum requirement we laid out in the intro: 
+In this section of the lesson, we want to complete the create actions. Once again, let's take the minimum requirement we laid out in the intro: 
 
 #### Create a new Pet
   - Conditionally render a form to create a new Pet
@@ -17,7 +17,7 @@ And convert them into User Stories:
 
 ## Step 1: Conditionally Render the Form
 
-In this step, we will be tackling rendering a form that the user can enter new Pet data into. As with pet details, forms for the `Create` process are often handled in separate pages that the user routes to. As we are not going to be routing in this lab, we will need to make use of state to keep track of whether to show the form to the user or not! 
+In this step, we will be tackling rendering a form that the user can enter new Pet data into. As with pet details, forms for the `Create` process are often handled in separate pages that the user routes to. As we are not going to be routing in this lesson, we will need to make use of state to keep track of whether to show the form to the user or not! 
 
 ### Creating the Form UI
 
