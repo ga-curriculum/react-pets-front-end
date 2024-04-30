@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Intro](./assets/exercise-intro.png)
+# ![React and RESTful APIs - Pets - Intro](./assets/intro.png)
 
 **Learning Objective**: By the end of this lesson, the learner will understand the minimum requirements and component hierarchy of the app.
 

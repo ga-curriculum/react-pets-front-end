@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Delete](./assets/exercise-delete.png)
+# ![React and RESTful APIs - Pets - Delete](./assets/delete.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Delete functionality in a React application.
 
