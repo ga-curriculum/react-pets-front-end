@@ -1,4 +1,4 @@
-# ![React Front End Pets Lab - Setup](./assets/hero.png)
+# ![React and RESTful APIs - Pets - Setup](./assets/hero.png)
 
 ## Setup
 
@@ -75,7 +75,7 @@ We are going to keep any components we create inside the `components` directory.
 
 ### Run the back end server
 
-You will be using the back end server you created in the Express REST API lesson as the API for this lab. In a separate VScode window open the terminal, navigate to the correct directory, and run the server with `nodemon`:  
+You will be using the back end server you created in the Express REST API lesson as the API for this lesson. In a separate VScode window open the terminal, navigate to the correct directory, and run the server with `nodemon`:  
 
 ```bash
 cd ~/code/ga/lectures/express-rest-api

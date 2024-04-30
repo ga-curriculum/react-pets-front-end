@@ -1,4 +1,4 @@
-# ![React Front End Pets Lab](../assets/hero.png)
+# ![React and RESTful APIs - Pets](../assets/hero.png)
 
 ## About
 

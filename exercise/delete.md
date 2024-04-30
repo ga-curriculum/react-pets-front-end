@@ -1,10 +1,10 @@
-# ![React Front End Pets Lab - Delete](./assets/exercise-delete.png)
+# ![React and RESTful APIs - Pets - Delete](./assets/exercise-delete.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Delete functionality in a React application.
 
 ## Delete
 
-In this section of the lab, you will be completing the delete actions. Let's take the minimum requirement we laid out in the intro: 
+In this section of the lesson, you will be completing the delete actions. Let's take the minimum requirement we laid out in the intro: 
 
 #### Delete a Pet
   - Add a button to delete a Pet

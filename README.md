@@ -1,36 +1,36 @@
-# ![React Front End Pets Lab](./assets/hero.png)
 
-## About
 
-In this lesson students will use React to build a front end that consumes a RESTful API, allowing users to create, read, update, and delete data. This lesson is a basic introduction to consuming APIs with React and **does not** include React Router to change views; instead, students will use conditional rendering to display different components.
 
-## Prerequisites
+
+
+
+
+
+
+
+
+
 
 - Express REST API
-
+---
+**Find a 👾 bug 👾 or have suggestions? [Let us know](https://git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/blob/main/module-feedback.md)!**
+# ![React and RESTful APIs - Pets](./assets/hero.png)
+## About
 ## Content
-
-| Lesson | Video Time | Video | Skills |
+## Internal resources
+## Prerequisites
+## References
 | -- | -- | -- | -- | 
-| [Setup](./setup/README.md) | -- | -- | Setting up the development environment |
+| [Create](./exercise/create.md) | -- | -- | Implementing Create functionality |
+| [Delete](./exercise/delete.md) | -- | -- | Implementing Delete functionality |
 | [Intro](./exercise/intro.md) | -- | -- | Scoping minimum requirements and building component hierarchy | 
 | [Read - Index](./exercise/read-index.md) | -- | -- | Implementing Index functionality |
 | [Read - Show](./exercise/read-show.md) | -- | -- | Implementing Show functionality |
-| [Create](./exercise/create.md) | -- | -- | Implementing Create functionality |
+| [Setup](./setup/README.md) | -- | -- | Setting up the development environment |
 | [Update](./exercise/update.md) | -- | -- | Implementing Update functionality |
-| [Delete](./exercise/delete.md) | -- | -- | Implementing Delete functionality |
+| Lesson | Video Time | Video | Skills |
 | Total Content | -- | -- | |
-
-## References
-
-📖 [Reference Materials](./references/README.md)
-
-## Internal resources
-
 ✏️ [Instructor Guide](./internal-resources/instructor-guide.md)
-
 🏗️ [Release Notes](./internal-resources/release-notes.md)
-
----
-
-**Find a 👾 bug 👾 or have suggestions? [Let us know](https://git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/blob/main/module-feedback.md)!**
+📖 [Reference Materials](./references/README.md)
+In this lesson students will use React to build a front end that consumes a RESTful API, allowing users to create, read, update, and delete data. This lesson is a basic introduction to consuming APIs with React and **does not** include React Router to change views; instead, students will use conditional rendering to display different components.

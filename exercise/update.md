@@ -1,10 +1,10 @@
-# ![React Front End Pets Lab - Update](./assets/exercise-update.png)
+# ![React and RESTful APIs - Pets - Update](./assets/exercise-update.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Update functionality in a React application.
 
 ## Update
 
-In this section of the lab, we will be completing the update actions. Let's take the minimum requirement we laid out in the intro: 
+In this section of the lesson, we will be completing the update actions. Let's take the minimum requirement we laid out in the intro: 
 
 #### Update a Pet
   - Conditionally render a form to update a Pet
