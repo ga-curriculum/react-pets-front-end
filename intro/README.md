@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Intro](./assets/intro.png)
+# ![React - Pets Front-End - Intro](./assets/hero.png)
 
 **Learning Objective**: By the end of this lesson, the learner will understand the minimum requirements and component hierarchy of the app.
 
@@ -33,5 +33,5 @@ In this lesson, you'll be building a Single Page Application (SPA) using React. 
 
 This lesson does not feature any routing, meaning that the user will not be navigating between pages in this build. When working with React, however, this doesn't mean that you are limited to the use of a single component - far from it! Your single 'page' will be made up of multiple components, so it's still a good idea to map out the component hierarchy and get an overview of the app layout before you start coding:
 
-[tktk Hunter amazing graphic here]
+![Component Hierarchy](./assets/chd.png)
   

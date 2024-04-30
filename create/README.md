@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Create](./assets/exercise-create.png)
+# ![React - Pets Front-End - Create](./assets/hero.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Create functionality in a React application.
 

@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Setup](./assets/hero.png)
+# ![React - Pets Front-End - Setup](./assets/hero.png)
 
 ## Setup
 

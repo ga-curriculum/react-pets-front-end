@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets](./assets/hero.png)
+# ![React - Pets Front-End](./assets/hero.png)
 
 ## About
 
@@ -6,7 +6,7 @@ In this lesson students will use React to build a front end that consumes a REST
 
 ## Prerequisites
 
-- Express REST API
+- Express API - Pets Back-End
 
 ## Content
 

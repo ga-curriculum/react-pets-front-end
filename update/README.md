@@ -1,4 +1,4 @@
-# ![React and RESTful APIs - Pets - Update](./assets/update.png)
+# ![React - Pets Front-End - Update](./assets/hero.png)
 
 **Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Update functionality in a React application.
 
