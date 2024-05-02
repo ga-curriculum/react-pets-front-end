@@ -6,7 +6,7 @@ Welcome to Reactville, a constantly evolving virtual metropolis. Let's build thi
 
 ## About
 
-The Reactville animal shelter is looking for a solution for keeping track of all the animals they have currently listed for adoption. You're going to help them build an interactive dashboard where shelter staff can add, update, and remove animals during the adoption process. Let's help these pets find their fur-ever home!
+The Reactville Animal Shelter is seeking a solution to keep track of all the animals currently available for adoption. You will help them build an interactive dashboard where shelter staff can add, update, and remove animals throughout the adoption process. Let's help these pets find their fur-ever home!
 
 ![Solution UI](../assets/solution-ui.png)
 
@@ -23,7 +23,6 @@ By the end of this lab, students will have a front end that consumes a RESTful A
 | [Create](../create/README.md)           | Create and manage forms in React to add new pet entries to a database          |
 | [Update](../update/README.md)           | Make update calls to an API and refresh the app state to reflect those changes |
 | [Delete](../delete/README.md)           | Implementing Delete functionality                                              |
-| Total Content                           |                                                                                |
 
 ## Level Up content
 
