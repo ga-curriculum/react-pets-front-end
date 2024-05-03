@@ -100,6 +100,27 @@ Now, we can access this variable for use in all fetch calls to the server:
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/pets`;
 ```
 
+### GitHub setup
+
+To add this project to GitHub, initialize a Git repository:
+
+```bash
+git init
+git add .
+git commit -m "init commit"
+```
+
+Make a new repository on [GitHub](https://github.com/) named react-pets-front-end. 
+
+Link your local project to your remote GitHub repo:
+
+```bash
+git remote add origin https://github.com/<github-username>/react-pets-front-end.git
+git push origin main
+```
+
+> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
+
 ## Running the Express backend
 
 Before diving into our React app development, you'll need to ensure that the Express backend server is operational. This backend will handle requests from your React app. You will be using the back-end server you created in the [`Express API - Pets Back-End`](https://git.generalassemb.ly/modular-curriculum-all-courses/express-api-pets-back-end) lesson as the API for this lesson.
@@ -135,24 +156,3 @@ Start the server and you are ready to start on the React front-end!
 ```bash
 nodemon start
 ```
-
-### GitHub setup
-
-To add this project to GitHub, initialize a Git repository:
-
-```bash
-git init
-git add .
-git commit -m "init commit"
-```
-
-Make a new repository on [GitHub](https://github.com/) named react-pets-front-end. 
-
-Link your local project to your remote GitHub repo:
-
-```bash
-git remote add origin https://github.com/<github-username>/react-pets-front-end.git
-git push origin main
-```
-
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
