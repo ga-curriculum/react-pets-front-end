@@ -47,7 +47,21 @@ const App = () => {
 export default App;
 ```
 
-Start the dev server by running `npm run dev` in your terminal and the go to `localhost:5173` in your browser.
+### Running the development server
+
+To start the development server and view our app in the browser, we'll use the following command: 
+
+```bash
+npm run dev
+```
+
+You should see that `Vite` is available on port number 5173: 
+
+```plaintext
+localhost:5173
+```
+
+### Create file structure
 
 Now let's setup the file and folder structure for our project:
 
@@ -128,9 +142,11 @@ To add this project to GitHub, initialize a Git repository:
 
 ```bash
 git init
+git add .
+git commit -m "init commit"
 ```
 
-Make a new repository on [GitHub](https://github.com/) named `react-pets-front-end`.
+Make a new repository on [GitHub](https://github.com/) named react-pets-front-end. 
 
 Link your local project to your remote GitHub repo:
 
