@@ -72,7 +72,7 @@ Now let's setup the file and folder structure for our project:
 
 We are going to keep all components we create inside the `components` directory. This will help us keep our project organized and easy to navigate.`petService.js` will hold the base URL for our API, and any functions that make calls to the server for data. This structure will help us keep our code DRY and easy to maintain.
 
-### Using environment variable with Vite
+### Using environment variables with Vite
 
 With a SPA like React, we want the backend and frontend to be as loosely coupled as possible. This means, instead of hard-coding our `localhost:3000` address into the front-end codebase for our server calls, we want to use an environment variable that can change depending on context.
 
