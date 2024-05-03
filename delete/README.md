@@ -1,6 +1,6 @@
 # ![React - Pets Front-End - Delete](./assets/hero.png)
 
-**Learning Objective**: By the end of this lesson, the learner be able to interface with an API to implement Delete functionality in a React application.
+**Learning Objective**: By the end of this lesson, learners will be able to implement delete functionality in a React application, enabling them to make delete requests to an API and remove items from the user interface dynamically.
 
 ## Delete
 

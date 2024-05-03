@@ -29,7 +29,7 @@ By the end of this lab, students will have a front end that consumes a RESTful A
 | [Read - Show](./read-show/README.md)   | Use React components to display details about an individual item from API data |
 | [Create](./create/README.md)           | Create and manage forms in React to add new pet entries to a database          |
 | [Update](./update/README.md)           | Make update calls to an API and refresh the app state to reflect those changes |
-| [Delete](./delete/README.md)           | Implementing Delete functionality                                              |
+| [Delete](./delete/README.md)           | Make delete requests to an API and remove items from the user interface        |
 
 ## Level Up content
 
