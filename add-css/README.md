@@ -188,8 +188,7 @@ return (
       onChange={handleChange}
     />
     <button type="submit">
-      {' '}
-      {props.selected ? 'Update Pet' : 'Add New Pet'}{' '}
+      {props.selected ? 'Update Pet' : 'Add New Pet'}
     </button>
   </form>
 </div>
