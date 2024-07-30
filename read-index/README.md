@@ -1,6 +1,6 @@
 # ![React - Pets Front-End - Read - Index](./assets/hero.png)
 
-**Learning Objective**: By the end of this lesson, the learner be able to connect a React application to an API to fetch and display a list of items, specifically showing all pets on the screen
+**Learning Objective**: By the end of this lesson, the learner will be able to connect a React application to an API to fetch and display a list of items, specifically showing all pets on the screen
 
 ## Read - Index
 
