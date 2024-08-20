@@ -153,7 +153,7 @@ const PetDetail = (props) => {
   );
 };
 
-export default PetDetails;
+export default PetDetail;
 ```
 
 Make sure to export the `PetDetail` component at the end of the file!

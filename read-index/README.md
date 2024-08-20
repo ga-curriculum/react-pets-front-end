@@ -172,9 +172,9 @@ const App = () => {
     // create a new async function
     const fetchPets = async () => {
       // call on the index function
-      const data = await petService.index();
+      const pets = await petService.index();
       // Set petList state to the returned pets data
-      setPetList(data.pets);
+      setPetList(pets);
     };
     // invoke the function
     fetchPets();
@@ -223,7 +223,6 @@ useEffect(() => {
       if (pets.error) {
         throw new Error(pets.error);
       }
-
       setPetList(pets);
     } catch (error) {
       // Log the error object
