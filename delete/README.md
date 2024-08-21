@@ -28,7 +28,8 @@ In `petService.js` create a new function called `deletePet`.
 This function should:
 
 - Accept the `id` of the pet as an argument.
-- Use `fetch` to make a `DELETE` request to the base URL with the `id` of the pet.
+- Use `fetch` to make a `DELETE` request to the base URL with the `id` of the pet. 
+- Return the deletedPet after converting the JSON into a JavaScript object.
 - Use a `try...catch` block to handle any errors.
 
 Don't forget to export this function so we can use it in the next step!
@@ -92,7 +93,7 @@ const deletePet = async (petId) => {
     const deletedPet = await fetch(`${BASE_URL}/${petId}`, {
       method: 'DELETE',
     });
-    return deletedPet;
+    return deletedPet.json();
   } catch (err) {
     console.log(err);
   }
