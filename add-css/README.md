@@ -1,16 +1,19 @@
-# ![React - Pets Front-End - Add CSS](./assets/hero.png)
+<h1>
+  <span class="headline">Pets Front-End</span>
+  <span class="subhead">Add CSS</span>
+</h1>
 
 **Learning Objective**: By the end of this lesson, the learner will be able to style their React components using the provided CSS styles.
 
 ## Adding CSS
 
-Great job completing your first MERN stack application! Let's take it a step further by polishing up that front-end dashboard with some CSS.
+Great job completing your first MERN stack application! Let's take it further by polishing that front-end dashboard with some CSS.
 
-We've created the following styles to give your application a dashboard layout. Add them to `App.css`:
+We've created the following styles to give your application a dashboard layout. Remove the existing styles from `App.css` and add these in their place:
 
 ```css
 #root {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: grid;
   grid-template-columns: fit-content(375px) 1fr;
@@ -32,9 +35,11 @@ We've created the following styles to give your application a dashboard layout. 
   overflow-y: overlay;
   max-height: 700px;
   scrollbar-color: #ffffff40 #00000000;
+  width: 100%;
 }
 
 ul {
+  padding-left: 0;
   list-style-type: none;
   max-width: 300px;
   display: inline-block;
@@ -92,46 +97,69 @@ button {
 
 ## Add classes to components
 
-Now we'll add some classes to our components to apply these styles. Before you begin, make sure to import `App.css` at the top of `App.jsx`.
+We'll add some classes to our components to apply these styles. Before you begin, import `App.css` at the top of `App.jsx`.
 
 ```jsx
+// src/App.jsx
+
+import { useState, useEffect } from 'react';
+
+// Importing the CSS file
 import './App.css';
+
+import * as petService from './services/petService';
+
+import PetList from './components/PetList/PetList';
+import PetDetail from './components/PetDetail/PetDetail';
+import PetForm from './components/PetForm/PetForm';
 ```
 
-### 1. PetList Component
+### 1. `PetList` Component
 
-**File**: `PetList.jsx`
+Make these changes:
 
 - **Class `sidebar-container`**: Add this class to the outermost `div` of the `PetList` component to style the sidebar where the pet list will appear.
-- **Class `list-container`**: Add this class to the `div` wrapping the `ul` element that contains the list of pets. This will style the container of the list, particularly its scrolling behavior.
+- **Class `list-container`**: Add this class to the `div` that wraps the `ul` element containing the list of pets. This will style the container of the list, particularly its scrolling behavior.
 
 ```jsx
-// PetList.jsx
+// src/components/PetList/PetList.jsx
 
-<div className="sidebar-container">
-  <h1>Pet List</h1>
-  <div className="list-container">
-    {!props.petList.length ? (
-      <h2>No Pets Yet!</h2>
-    ) : (
-      <ul role="list">{pets}</ul>
-    )}
-  </div>
-  <button onClick={props.handleFormView}>
-    {props.isFormOpen ? 'Close Form' : 'New Pet'}
-  </button>
-</div>
+  return (
+    <div className="sidebar-container">
+      <h1>Pet List</h1>
+      <div className="list-container">
+        {!props.pets.length ? (
+          <h2>No Pets Yet!</h2>
+        ) : (
+          <ul>
+            {props.pets.map((pet) => 
+              <li 
+                key={pet._id}
+                style={{ cursor: 'pointer', color: "#0070E0" }}
+                onClick={() => props.handleSelect(pet)}
+              >
+                {pet.name}
+              </li>
+            )}
+          </ul>
+        )}
+      </div>
+      <button onClick={props.handleFormView}>
+        {props.isFormOpen ? 'Close Form' : 'New Pet'}
+      </button>
+    </div>
+  );
 ```
 
-### 2. PetDetail Component
+### 2. `PetDetail` Component
 
-**File**: `PetDetail.jsx`
+Make these changes:
 
-- **Class `details-container`**: Add this class to the outermost `div`'s of the `PetDetail` component. This will apply styles to the details display sections, enhancing alignment and padding.
-- **Class `button-container`**: Add this class to the `div` that wraps the edit and delete buttons to apply specific styling like button padding.
+- **Class `details-container`**: Add this class to the outermost `div` of the `PetDetail` component. This will apply styles to the details display sections, enhancing alignment and padding.
+- **Class `button-container`**: Add this class to the `div` that wraps the edit and delete buttons to apply specific styling, like button padding.
 
 ```jsx
-// PetDetail.jsx
+// src/components/PetDetail/PetDetail.jsx
 
 if (!props.selected)
   return (
@@ -149,49 +177,59 @@ return (
     </h2>
 
     <div className="button-container">
-      <button onClick={() => props.handleFormView(props.selected)}>Edit</button>
-      <button onClick={() => props.handleRemovePet(props.selected._id)}>
-        Delete
+      <button onClick={() => props.handleFormView(props.selected)}>
+        Edit Pet
+      </button>
+      <button onClick={() => props.handleDeletePet(props.selected._id)}>
+        Delete Pet
       </button>
     </div>
   </div>
 );
 ```
 
-### 3. PetForm Component
+### 3. `PetForm` Component
 
-**File**: `PetForm.jsx`
+Make these changes:
 
 - **Class `form-container`**: Add this class to the outermost `div` that wraps the form element. This ensures that the form is centered and the flexbox properties are applied correctly.
-- Additionally, ensure all inputs and labels are properly aligned and spaced by the inherited CSS from the `form` tag.
+  - Additionally, it ensures all inputs and labels are properly aligned and spaced by the inherited CSS from the `form` tag.
 
 ```jsx
-// PetForm.jsx
+// src/components/PetForm/PetForm.jsx
 
-<div className="form-container">
-  <form onSubmit={handleSubmit}>
-    <label htmlFor="name"> Name </label>
-    <input
-      id="name"
-      name="name"
-      value={formData.name}
-      onChange={handleChange}
-      required
-    />
-    <label htmlFor="age"> Age </label>
-    <input id="age" name="age" value={formData.age} onChange={handleChange} />
-    <label htmlFor="breed"> Breed </label>
-    <input
-      id="breed"
-      name="breed"
-      value={formData.breed}
-      onChange={handleChange}
-    />
-    <button type="submit">
-      {props.selected ? 'Update Pet' : 'Add New Pet'}
-    </button>
-  </form>
-</div>
+  return (
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name"> Name </label>
+        <input
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="age"> Age </label>
+        <input
+          id="age"
+          name="age"
+          value={formData.age}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="breed"> Breed </label>
+        <input
+          id="breed"
+          name="breed"
+          value={formData.breed}
+          onChange={handleChange}
+        />
+        <button type="submit">
+          {props.selected ? 'Update Pet' : 'Add New Pet'}
+        </button>
+      </form>
+    </div>
+  );
 ```
 
-And you're done - thats a great looking dashboard! 
+And you're done - that's a great looking dashboard!

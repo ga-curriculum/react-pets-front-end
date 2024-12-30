@@ -1,67 +1,77 @@
-# ![React - Pets Front-End - Delete](./assets/hero.png)
+<h1>
+  <span class="headline">Pets Front-End</span>
+  <span class="subhead">Delete</span>
+</h1>
 
-**Learning Objective**: By the end of this lesson, learners will be able to implement delete functionality in a React application, enabling them to make delete requests to an API and remove items from the user interface dynamically.
+**Learning Objective**: By the end of this lesson, students will be able to implement delete functionality in a React application, enabling them to make delete requests to an API and remove items from the user interface dynamically.
 
-## Delete
+## Delete a pet
 
-In this section of the lesson, you will be completing the delete functionality. Let's review the requirements laid out in the intro:
+In this section, we'll build the delete functionality. Let's review the requirements laid out in the intro:
 
-#### Delete a Pet
+- Add a button to delete a pet.
+- Remove the pet from the UI.
 
-- Add a button to delete a Pet
-- Remove the Pet from the UI
+And translate them into a user story:
 
-And convert them into User Stories:
+> 👤 As a user, I want to be able to click a button on the details view to delete a pet.
 
-- As a user, I want to be able to click a button on the details view to delete a Pet.
+## 🎓 You Do: Implement delete functionality
 
-## 🎓 You Do: Add the `delete` service function
+Take some time to complete the following steps by following the instructions below and cross-referencing them with your existing code as needed.
 
-Implementing delete functionality will follow similar patterns to the one established throughout this lesson. Take some time to try to complete the following steps by following the below instructions, cross-referencing with your existing code as needed.
+1. Handle the delete button click event.
 
-### Step 1: Add a button to delete a Pet
+   - In the `App` component (where our `pets` state is), create a new function called `handleDeletePet()` to handle the deletion of a pet. This function will eventually invoke a service function and update the `pets` state.
+     - This function should accept the `_id` of the pet as an argument.
+     - Pass `handleDeletePet` as a prop to the `PetDetail` component.
+   - In the `PetDetail` component:
+     - Add a new button inside the same `div` as the **Edit Pet** button. The new button should have the text **Delete Pet**.
+     - Make the button call the `handleDeletePet()` function when clicked, passing the `_id` of the selected pet.
 
-Inside of `PetDetail.jsx` create a new button with text "Delete Pet" that will call the function to delete the pet.
+2. Get the `_id` to the service.
 
-In `petService.js` create a new function called `deletePet`.
+   - Inside of `petService.js`:
+     - Create a new function called `deletePet()`. This function should accept a pet's `_id` as an argument.
+     - Export the function.
+   - In the `App` component's `handleDeletePet()` function:
+     - Call the new `deletePet()` service and pass it the pet's `_id`.
+     - Assign the response to a variable called `deletedPet`.
+     - Console log the `deletedPet` object (right now, it will log `undefined`).
 
-This function should:
+3. Make the request to the back-end and process the response.
 
-- Accept the `id` of the pet as an argument.
-- Use `fetch` to make a `DELETE` request to the base URL with the `id` of the pet. 
-- Return the deletedPet after converting the JSON into a JavaScript object.
-- Use a `try...catch` block to handle any errors.
+   - Return to the `deletePet()` function in `petService.js` and complete the function:
+     - Use a `try...catch` block to handle any errors.
+     - Use `fetch` to make a `DELETE` request to the base URL with the `_id` of the pet (check your server code if you need clarity on the exact URL).
+     - Use the `json()` method to parse the response.
+     - Return the parsed response.
+   - If you test this now, you should see the delete pet object logged to the console (because of the `console.log(deletedPet)` in `handleDeletePet()` in the `App` component).
 
-Don't forget to export this function so we can use it in the next step!
+4. Update the `pets` state.
 
-  In `App.jsx` create a new function called `handleRemovePet` to handle the deletion of a pet.
-  - This function should accept the `id` of the pet as an argument.
-  - This function should call the `deletePet` function and pass the `id` to it, assigning to response to a `deletedPet` variable.
-  - This function should use `.filter()` to remove the pet from `petList` state.
-  - This function should set `selected` state to `null`, and `isFormOpen` state to `false`
-  - This function should check if `deletedPet` has an `error` property, and throw a new `Error` if so, logging the error to the console.
+   - In the `App` component's `handleDeletePet()` function:
+     - Use the array's `filter()` method to remove the deleted pet from `pets` state.
+     - This function should set the `selected` state to `null` and the `isFormOpen` state to `false`.
+     - If `deletedPet` has an error, throw a new `Error` and log the error. Use a `try...catch` block to handle this.
 
-## Step 2: Remove the Pet from the UI
-
-- Pass `handleRemovePet` as a prop to the `PetDetail` component.
-- Inside of `PetDetail.jsx` call `handleRemovePet` when the "Delete Pet" button is clicked.
-
-Test it out in the browser and make sure you can delete a pet and see it removed from the UI.
+Test it out in the browser and make sure you can update a pet and see it displayed in the UI.
 
 ### Check your work
 
 #### Step 1
 
 ```jsx
-// src/components/PetDetails.jsx
+// src/components/PetDetail/PetDetail.jsx
 
-const PetDetails = (props) => {
-  if (!props.selected)
+const PetDetail = (props) => {
+  if (!props.selected) {
     return (
       <div>
         <h1>NO DETAILS</h1>
       </div>
     );
+  }
 
   return (
     <div>
@@ -72,17 +82,17 @@ const PetDetails = (props) => {
       </h2>
       <div>
         <button onClick={() => props.handleFormView(props.selected)}>
-          Edit
+          Edit Pet
         </button>
-        <button onClick={() => props.handleRemovePet(props.selected._id)}>
-          Delete
+        <button onClick={() => props.handleDeletePet(props.selected._id)}>
+          Delete Pet
         </button>
       </div>
     </div>
   );
 };
 
-export default PetDetails;
+export default PetDetail;
 ```
 
 ```js
@@ -90,10 +100,10 @@ export default PetDetails;
 
 const deletePet = async (petId) => {
   try {
-    const deletedPet = await fetch(`${BASE_URL}/${petId}`, {
+    const res = await fetch(`${BASE_URL}/${petId}`, {
       method: 'DELETE',
     });
-    return deletedPet.json();
+    return res.json();
   } catch (err) {
     console.log(err);
   }
@@ -104,114 +114,115 @@ const deletePet = async (petId) => {
 // src/App.jsx
 
 import { useState, useEffect } from 'react';
-import './App.css';
 
 import * as petService from './services/petService';
 
-import PetDetail from './components/PetDetail';
-import PetForm from './components/PetForm';
-import PetList from './components/PetList';
+import PetList from './components/PetList/PetList';
+import PetDetail from './components/PetDetail/PetDetail';
+import PetForm from './components/PetForm/PetForm';
 
 function App() {
-  const [petList, setPetList] = useState([]);
+  const [pets, setPets] = useState([]);
   const [selected, setSelected] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        const pets = await petService.index();
+        const fetchedPets = await petService.index();
 
-        if (pets.error) {
-          throw new Error(pets.error);
+        if (fetchedPets.err) {
+          throw new Error(fetchedPets.err);
         }
 
-        setPetList(pets);
-      } catch (error) {
-        console.log(error);
+        setPets(fetchedPets);
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchPets();
   }, []);
 
-  const handleFormView = (pet) => {
-    if (!pet.name) setSelected(null);
-    setIsFormOpen(!isFormOpen);
+  const handleSelect = (pet) => {
+    setSelected(pet);
+    setIsFormOpen(false);
   };
 
-  const updateSelected = (pet) => {
-    setSelected(pet);
+  const handleFormView = (pet) => {
+    if (!pet._id) setSelected(null);
+    setIsFormOpen(!isFormOpen);
   };
 
   const handleAddPet = async (formData) => {
     try {
       const newPet = await petService.create(formData);
 
-      if (newPet.error) {
-        throw new Error(newPet.error);
+      if (newPet.err) {
+        throw new Error(newPet.err);
       }
 
-      setPetList([newPet, ...petList]);
+      setPets([newPet, ...pets]);
       setIsFormOpen(false);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const handleUpdatePet = async (formData, petId) => {
     try {
-      const updatedPet = await petService.updatePet(formData, petId);
+      const updatedPet = await petService.update(formData, petId);
 
-      if (updatedPet.error) {
-        throw new Error(updatedPet.error);
+      if (updatedPet.err) {
+        throw new Error(updatedPet.err);
       }
 
-      const updatedPetList = petList.map((pet) =>
+      const updatedPetList = pets.map((pet) => (
         pet._id !== updatedPet._id ? pet : updatedPet
-      );
-      setPetList(updatedPetList);
+      ));
+
+      setPets(updatedPetList);
       setSelected(updatedPet);
       setIsFormOpen(false);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const handleRemovePet = async (petId) => {
+  const handleDeletePet = async (petId) => {
     try {
       const deletedPet = await petService.deletePet(petId);
 
-      if (deletedPet.error) {
-        throw new Error(deletedPet.error);
+      if (deletedPet.err) {
+        throw new Error(deletedPet.err);
       }
 
-      setPetList(petList.filter((pet) => pet._id !== deletedPet._id));
+      setPets(pets.filter((pet) => pet._id !== deletedPet._id));
       setSelected(null);
       setIsFormOpen(false);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <>
       <PetList
-        petList={petList}
-        isFormOpen={isFormOpen}
-        updateSelected={updateSelected}
+        pets={pets}
+        handleSelect={handleSelect}
         handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
       />
       {isFormOpen ? (
         <PetForm
-          selected={selected}
           handleAddPet={handleAddPet}
+          selected={selected}
           handleUpdatePet={handleUpdatePet}
         />
       ) : (
         <PetDetail
           selected={selected}
           handleFormView={handleFormView}
-          handleRemovePet={handleRemovePet}
+          handleDeletePet={handleDeletePet}
         />
       )}
     </>
@@ -221,7 +232,8 @@ function App() {
 export default App;
 ```
 
+## Congratulations! 🎉
 
-### Congratulations! 🎉 
+You've successfully completed a full-stack project featuring a React front-end and an Express API back-end, which together are capable of performing complete CRUD operations on a resource while providing a UI to elevate the user experience. This is a significant achievement in your learning journey!
 
-You've successfully completed a full stack application featuring a React front end and an Express API backend, capable of performing complete CRUD operations on a resource. This is a significant achievement in your learning journey. Typically, an application that uses MongoDB, Express, React, and Node.js is referred to as a MERN stack application. ***Well done on building your first MERN stack application!*** This milestone sets a solid foundation for your future projects and development skills. Keep up the great work!
+***Well done building your first MERN (MongoDB, Express, React, and Node.js) stack project!*** This milestone sets a solid foundation for your future projects and development skills. Keep up the great work!

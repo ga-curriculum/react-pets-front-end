@@ -1,4 +1,7 @@
-# ![React Front End Pets - References](./assets/hero.png)
+<h1>
+  <span class="headline">Pets Front-End</span>
+  <span class="subhead">References</span>
+</h1>
 
 ## Lesson references
 
