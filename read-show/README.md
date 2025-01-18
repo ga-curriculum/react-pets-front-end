@@ -31,7 +31,7 @@ Let's implement the ability to show a single pet in the UI. We want to be able t
           {props.pets.map((pet) => (
             <li 
               key={pet._id}
-              style={{ cursor: 'pointer', color: "#0070E0" }}
+              style={{ cursor: 'pointer', color: "#646CFF" }}
               onClick={() => console.log(pet)}
             >
               {pet.name}
@@ -96,7 +96,7 @@ Next, pass this function as a prop to the `PetList` component and call it when a
           {props.pets.map((pet) => (
             <li 
               key={pet._id}
-              style={{ cursor: 'pointer', color: "#0070E0" }}
+              style={{ cursor: 'pointer', color: "#646CFF" }}
               // Call the handleSelect() function on click, passing the pet.
               onClick={() => props.handleSelect(pet)}
             >

@@ -135,7 +135,7 @@ Make these changes:
             {props.pets.map((pet) => 
               <li 
                 key={pet._id}
-                style={{ cursor: 'pointer', color: "#0070E0" }}
+                style={{ cursor: 'pointer', color: "#646CFF" }}
                 onClick={() => props.handleSelect(pet)}
               >
                 {pet.name}
