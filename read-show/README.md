@@ -20,25 +20,29 @@ And the accompanying user story:
 
 Let's implement the ability to show a single pet in the UI. We want to be able to click on a pet and see its details.
 
+<!-- {% raw %} -->
+
 1. Inside `PetList.jsx`, where you `.map()` over the pets, we want to indicate to the user that a pet can be clicked on. We'll give it some inline styling to help accomplish this.
 
 2. Next, add an `onClick` event to the `li` element. For testing purposes, let's add an inline function that logs the clicked pet to the console.
 
-```jsx
-// src/components/PetList/PetList.jsx
+   ```jsx
+   // src/components/PetList/PetList.jsx
 
-        <ul>
-          {props.pets.map((pet) => (
-            <li 
-              key={pet._id}
-              style={{ cursor: 'pointer', color: "#646CFF" }}
-              onClick={() => console.log(pet)}
-            >
-              {pet.name}
-            </li>
-          ))}
-        </ul>
-```
+           <ul>
+             {props.pets.map((pet) => (
+               <li 
+                 key={pet._id}
+                 style={{ cursor: 'pointer', color: "#646CFF" }}
+                 onClick={() => console.log(pet)}
+               >
+                 {pet.name}
+               </li>
+             ))}
+           </ul>
+   ```
+
+<!-- {% endraw %} -->
 
 You should be able to click on each pet name and see the corresponding pet object log to the console. If not, debug before moving on to the next step!
 
@@ -89,6 +93,8 @@ Next, pass this function as a prop to the `PetList` component and call it when a
   );
 ```
 
+<!-- {% raw %} -->
+
 ```jsx
 // src/components/PetList/PetList.jsx
 
@@ -105,6 +111,8 @@ Next, pass this function as a prop to the `PetList` component and call it when a
           ))}
         </ul>
 ```
+
+<!-- {% endraw %} -->
 
 Before moving on, test that you can click on a pet and have the `selected` state update to the selected pet. You can check this with the React DevTools.
 

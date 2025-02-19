@@ -121,6 +121,8 @@ Make these changes:
 - **Class `sidebar-container`**: Add this class to the outermost `div` of the `PetList` component to style the sidebar where the pet list will appear.
 - **Class `list-container`**: Add this class to the `div` that wraps the `ul` element containing the list of pets. This will style the container of the list, particularly its scrolling behavior.
 
+<!-- {% raw %} -->
+
 ```jsx
 // src/components/PetList/PetList.jsx
 
@@ -150,6 +152,8 @@ Make these changes:
     </div>
   );
 ```
+
+<!-- {% endraw %} -->
 
 ### 2. `PetDetail` Component
 

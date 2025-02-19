@@ -206,6 +206,8 @@ Finally, in `PetList.jsx`, we can create our button. It will call `handleFormVie
 - The button should say **Close Form** if the form is open (`true`).
 - The button should say **Add Pet** if the form is closed (`false`).
 
+<!-- {% raw %} -->
+
 ```jsx
 // src/components/PetList.jsx
 
@@ -236,6 +238,8 @@ Finally, in `PetList.jsx`, we can create our button. It will call `handleFormVie
     </div>
   );
 ```
+
+<!-- {% endraw %} -->
 
 To complete this step, we'll need to conditionally render either the `PetForm` component or the `PetDetail` based on the value of `isFormOpen`:
 
