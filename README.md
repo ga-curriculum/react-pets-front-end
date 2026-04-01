@@ -55,8 +55,8 @@ This module requires an existing API to perform CRUD operations on the resource 
 
 ### Course landing pages
 
-- [SEB - Software Engineering Bootcamp](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-pets-front-end/canvas-landing-pages/seb.html)
-- [Fallback](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-pets-front-end/canvas-landing-pages/fallback.html)
+- [SEB - Software Engineering Bootcamp](https://ga-curriculum.github.io/react-pets-front-end/canvas-landing-pages/seb.html)
+- [Fallback](https://ga-curriculum.github.io/react-pets-front-end/canvas-landing-pages/fallback.html)
 
 ### Resources
 
@@ -68,4 +68,4 @@ This module requires an existing API to perform CRUD operations on the resource 
 
 ---
 
-**Find a 👾 bug 👾 or have suggestions? [Let us know](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/universal-resources-internal/module-feedback.html)!**
+**Find a 👾 bug 👾 or have suggestions? [Let us know](https://ga-curriculum.github.io/universal-resources-internal/module-feedback.html)!**
