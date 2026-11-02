@@ -124,7 +124,7 @@ git push origin main
 
 Before diving into our React app development, you must ensure the Express back-end server is operational. This back-end will handle requests from your React app. You will be using the back-end server you created in the `Express API - Pets Back-End` lesson as the API for this lesson.
 
-> 😎 If your `express-api-pets-back-end` is incomplete, you can obtain a fully implemented version from the [solution code repo](https://git.generalassemb.ly/modular-curriculum-all-courses/express-api-pets-back-end-solution). Install all the necessary dependencies with `npm i` and establish a connection to your MongoDB Atlas by adding a connection string in a `.env` file.
+> 😎 If your `express-api-pets-back-end` is incomplete, you can obtain a fully implemented version from the [solution code repo](https://github.com/ga-curriculum/express-api-pets-back-end-solution). Install all the necessary dependencies with `npm i` and establish a connection to your MongoDB Atlas by adding a connection string in a `.env` file.
 
 Follow these steps to set up the server:
 
