@@ -47,11 +47,11 @@ By the end of this lab, students will have a front end that consumes a RESTful A
 
 This module requires an existing API to perform CRUD operations on the resource `pets`.
 
-🟢 [Express API starter code](https://git.generalassemb.ly/modular-curriculum-all-courses/express-api-pets-back-end-solution)
+🟢 [Express API starter code](https://github.com/ga-curriculum/express-api-pets-back-end-solution)
 
 ### Solution code
 
-🏁 [Solution code](https://git.generalassemb.ly/modular-curriculum-all-courses/react-pets-front-end-solution)
+🏁 [Solution code](https://github.com/ga-curriculum/react-pets-front-end-solution)
 
 ### Course landing pages
 
